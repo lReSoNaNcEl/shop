@@ -12,32 +12,29 @@
                 <p class="hint__text">Крутите колёсико</p>
                 <img class="hint__icon" src="img/hint.svg"/>
             </div>
-        </div>
+        </div>s
 
         <div class="photos">
             <h2 class="photos__title">Наши работы</h2>
             <div class="slider">
                 <div ref="slider" class="slider__wrapper">
-                    <img class="slider__item" src="img/img_1.png"/>
-                    <img class="slider__item" src="img/img_2.png"/>
-                    <img class="slider__item" src="img/img_3.png"/>
-                    <img class="slider__item" src="img/img_1.png"/>
-                    <img class="slider__item" src="img/img_2.png"/>
-                    <img class="slider__item" src="img/img_3.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_1.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_2.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_3.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_1.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_2.png"/>
+                    <img @click="sliderObserver" class="slider__item" src="img/img_3.png"/>
                 </div>
             </div>
         </div>
 
-        <div class="contacts">
-            <p class="contacts__phone">8 (800) 888-88-88</p>
-            <div class="contacts__barrier"></div>
-            <p class="contacts__address">г.Липецк ул.Космонавтов д.1</p>
-        </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
  import Header from '@/components/Header'
+ import Footer from '@/components/Footer'
  export default {
      data() {
          return {
@@ -54,24 +51,31 @@
             const margin = window.getComputedStyle(slider.children[0]).getPropertyValue('margin-right').replace('px', '') //ширина отступа между слайдами
             let offset = parseFloat(itemWidth) + Math.ceil(parseFloat(margin)) //сдвиг при скролле
 
-            if (e.deltaY > 0) {
-                if (this.currentSlide < count) {
-                    this.currentSlide++;
-                    slider.style.left = `${this.scrollState -= offset}px`
-                }
-            }
-            else {
-                if (this.currentSlide > 1) {
-                    this.currentSlide--;
-                    slider.style.left = `${this.scrollState += offset}px`
-                }
-            }
+             if (e.type !== 'click') {
 
-            console.dir(this.scrollState)
-            console.dir(this.currentSlide)
-        }
+                 if (e.deltaY > 0) {
+                     if (this.currentSlide < count) {
+                         this.currentSlide++;
+                         slider.style.left = `${this.scrollState -= offset}px`
+                     }
+                 } else {
+                     if (this.currentSlide > 1) {
+                         this.currentSlide--;
+                         slider.style.left = `${this.scrollState += offset}px`
+                     }
+                 }
+
+             }
+             else {
+                 console.log(e)
+             }
+
+             console.dir(this.scrollState)
+             console.dir(this.currentSlide)
+             console.log(e)
+         }
      },
-     components: {Header}
+     components: {Header, Footer}
  }
 </script>
 
@@ -81,7 +85,7 @@
         height: 100vh;
         background: url('../static/img/slide_1.svg') no-repeat;
         background-position: top right;
-        /*background-size: 59.375vw 100vh;*/
+        background-size: 59.375vw 100vh;
     }
 
     .preview {
@@ -92,8 +96,8 @@
     .preview__title {
         font-size: 48px;
         font-weight: bold;
-        /*margin: 110px 0 45px 0;*/
-        margin: 0 0 45px 0;
+        margin: 100px 0 40px 0;
+        text-transform: uppercase;
     }
 
     .preview__desc {
@@ -113,7 +117,7 @@
         font-weight: 500;
         padding: 14px 42px;
         border: 1px solid black;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 6px;
     }
 
@@ -134,10 +138,8 @@
     .hint__text {
         height: inherit;
         padding: 130px 0 0 0;
-        /*left: 70px;*/
         font-size: 14px;
         color: white;
-        /*margin: 10px 0 0 0;*/
         transform: rotate(270deg);
     }
 
@@ -146,12 +148,15 @@
     }
 
     .photos__title {
+        font-size: 28px;
+        font-weight: bold;
         margin: 0 0 36px 0;
     }
 
     .slider {
         width: 50%;
         overflow-x: hidden;
+        margin: 0 0 38px 0;
     }
 
     .slider__wrapper {
@@ -165,20 +170,6 @@
     .slider__item {
         cursor: pointer;
         margin: 0 1.875vw 0 0;
-    }
-
-    .contacts {
-        height: 36px;
-        display: flex;
-        align-items: center;
-        padding: 0 0 0 3%;
-    }
-
-    .contacts__barrier {
-        width: 36px;
-        height: 1px;
-        background-color: #C9C9C9;
-        transform: rotate(90deg);
     }
 
 </style>
