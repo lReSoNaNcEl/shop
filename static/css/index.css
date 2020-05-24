@@ -69,3 +69,23 @@ input {
     }
 }
 
+@keyframes SwitchOpacity {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.animate {
+    animation: SwitchOpacity 1s;
+}
+
+.hooper{
+    height: 7.2916vw !important;
+    outline: none !important;
+}

@@ -8,8 +8,8 @@
             <div class="product__volume"> {{volume}} кв.м</div>
         </div>
         <div class="product__controls">
-            <nuxt-link :to="`/shop/product/${id}`" class="product__btn btn">Купить</nuxt-link>
-            <div class="product__info">Подробнее</div>
+            <nuxt-link to="#" class="product__btn btn">Купить</nuxt-link>
+            <nuxt-link :to="`/shop/product/${id}`" class="product__info">Подробнее</nuxt-link>
         </div>
     </div>
 </template>
