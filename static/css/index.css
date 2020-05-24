@@ -25,6 +25,12 @@ input {
     text-transform: uppercase;
 }
 
+.paragraph {
+    font-size: .9375vw;
+    margin: 0 0 2.083vw 0;
+    line-height: 180%;
+}
+
 .btn {
     font-weight: 500;
     font-size: .9375vw;
@@ -67,22 +73,6 @@ input {
         display: block;
         opacity: 1;
     }
-}
-
-@keyframes SwitchOpacity {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.animate {
-    animation: SwitchOpacity 1s;
 }
 
 .hooper{

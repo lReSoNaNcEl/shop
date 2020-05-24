@@ -3,7 +3,7 @@
         <Header/>
         <section class="about">
             <h1 class="about__title title">О компании</h1>
-            <p class="about__desc">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse proident deserunt reprehenderit quis Lorem enim amet et eiusmod occaecat minim sit magna qui enim eu et voluptate exercitation mollit dolore qui sint sunt ea elit ullamco eiusmod</p>
+            <p class="about__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse proident deserunt reprehenderit quis Lorem enim amet et eiusmod occaecat minim sit magna qui enim eu et voluptate exercitation mollit dolore qui sint sunt ea elit ullamco eiusmod</p>
             <div class="about__contacts">
                 Адрес: г.Липецк ул.Космонавтов д.1<br>
                 Телефон: 8 (800) 888-88-88<br>
@@ -38,14 +38,6 @@ export default {
     .about {
         width: 32%;
         padding: 0 0 0 3%;
-    }
-
-    .about__title {}
-
-    .about__desc {
-        font-size: .9375vw;
-        margin: 0 0 40px 0;
-        line-height: 180%;
     }
 
     .about__contacts {

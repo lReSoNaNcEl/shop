@@ -17,9 +17,9 @@
         <div class="production">
             <h2 class="production__title">Наши работы</h2>
                 <Hooper ref="carousel" :itemsToShow="3" class="slider">
-                    <slide v-for="photo in production[currentPage - 1].photos">
+                    <Slide v-for="photo in production[currentPage - 1].photos">
                         <img @click="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
-                    </slide>
+                    </Slide>
                 </Hooper>
             <div class="photos">
                 <img ref="photo" class="photos__item" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
@@ -54,7 +54,6 @@
          },
          sliderScroll(e) {
              this.currentSlide = +this.$refs.carousel.currentSlide + 1
-             console.log(this.$refs.carousel)
          }
      },
      created() {
@@ -138,14 +137,6 @@
         width: 50%;
         overflow-x: hidden;
         margin: 0 0 2.083vw 0;
-    }
-
-    .slider__wrapper {
-        width: 100%;
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        transition: .5s all;
     }
 
     .slider__item {

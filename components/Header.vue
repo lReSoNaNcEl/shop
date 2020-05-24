@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header" ref="header">
         <nuxt-link to="/">
             <img class="header__logo" src="/img/logo.svg">
         </nuxt-link>
@@ -17,8 +17,11 @@ export default {
     mounted() {
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
-        if (location.pathname === '/shop' || location.pathname === '/shop/basket')
+        if (location.pathname === '/shop' || location.pathname === '/shop/basket') {
             for (let link of links) link.style.color = 'black'
+            this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
+        }
+
     }
 }
 </script>
