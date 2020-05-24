@@ -1,21 +1,41 @@
 <template>
     <header class="header">
-        <img class="header__logo" src="img/logo.svg">
+        <nuxt-link to="/">
+            <img class="header__logo" src="/img/logo.svg">
+        </nuxt-link>
         <div class="header__navmenu">
             <nuxt-link class="navmenu__link" to="/">Главная</nuxt-link>
             <nuxt-link class="navmenu__link" to="/shop">Каталог</nuxt-link>
             <nuxt-link class="navmenu__link" to="/about">О компании</nuxt-link>
-            <nuxt-link class="navmenu__link" to="#">Поставщики</nuxt-link>
+            <nuxt-link class="navmenu__link" to="/providers">Поставщики</nuxt-link>
         </div>
     </header>
 </template>
 
+<script>
+export default {
+    mounted() {
+        let links = Array.from(document.getElementsByClassName('navmenu__link'))
+
+        if (location.pathname === '/shop' || location.pathname === '/shop/basket')
+            for (let link of links) link.style.color = 'black'
+    }
+}
+</script>
+
 <style scoped>
     .header {
-        padding: 0 3% 0 3%;
+        position: relative;
+        padding: 1.0416vw 3%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 2;
+    }
+
+    .header__logo {
+        width: 9.89583vw;
+        height: 4.16vw;
     }
 
     .navmenu__link {

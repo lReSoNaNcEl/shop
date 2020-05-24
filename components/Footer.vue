@@ -8,14 +8,17 @@
 
 <style scoped>
     .footer {
-        height: 36px;
+        position: relative;
+        height: 1.875vw;
         display: flex;
         align-items: center;
+        font-size: 1.0416vw;
         padding: 0 0 0 3%;
+        z-index: 2;
     }
 
     .footer__barrier {
-        width: 36px;
+        width: 1.875vw;
         height: 1px;
         background-color: #C9C9C9;
         transform: rotate(90deg);

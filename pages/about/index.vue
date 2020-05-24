@@ -2,7 +2,7 @@
     <div class="app">
         <Header/>
         <section class="about">
-            <h1 class="about__title">О компании</h1>
+            <h1 class="about__title title">О компании</h1>
             <p class="about__desc">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse proident deserunt reprehenderit quis Lorem enim amet et eiusmod occaecat minim sit magna qui enim eu et voluptate exercitation mollit dolore qui sint sunt ea elit ullamco eiusmod</p>
             <div class="about__contacts">
                 Адрес: г.Липецк ул.Космонавтов д.1<br>
@@ -40,28 +40,23 @@ export default {
         padding: 0 0 0 3%;
     }
 
-    .about__title {
-        font-size: 48px;
-        font-weight: bold;
-        margin: 100px 0 40px 0;
-        text-transform: uppercase;
-    }
+    .about__title {}
 
     .about__desc {
-        font-size: 18px;
+        font-size: .9375vw;
         margin: 0 0 40px 0;
         line-height: 180%;
     }
 
     .about__contacts {
-        font-size: 18px;
-        margin: 0 0 40px 0;
+        font-size: .9375vw;
+        margin: 0 0 2.083vw 0;
         line-height: 180%;
     }
 
     .about__social {
-        font-size: 18px;
-        margin: 0 0 80px 0;
+        font-size: .9375vw;
+        margin: 0 0 3.125vw 0;
         line-height: 180%;
     }
 
