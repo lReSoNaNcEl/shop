@@ -29,7 +29,7 @@ export const state = () => ({
                 {id: 2, path: '/img/preview/slide_3/2.png'},
                 {id: 3, path: '/img/preview/slide_3/3.png'},
             ]
-        },
+        }
     ]
 })
 

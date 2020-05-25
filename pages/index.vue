@@ -44,6 +44,7 @@
      methods: {
          sliderObserver(e) {
                 this.$refs.carousel.currentSlide = 0
+
                  if (e.deltaY > 0) {
                      if (this.currentPage < this.production.length)
                              this.currentPage++
@@ -56,7 +57,7 @@
          sliderScroll(e) {
              this.currentSlide = +this.$refs.carousel.currentSlide + 1
 
-             if (this.currentSlide > this.production.length || this.currentSlide < 1)
+             if (this.currentSlide > this.production[this.currentPage - 1].photos.length || this.currentSlide < 1)
                  this.currentSlide = 1
          }
      },
