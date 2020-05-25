@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div>
         <Header/>
         <section class="about">
             <h1 class="about__title title">О компании</h1>
@@ -15,6 +15,7 @@
                 FaceBook: facebook.com/steel-house<br>
                 Instagram: @steel-house
             </div>
+            <img class="about__bg" src="/img/about.png"/>
         </section>
         <Footer/>
     </div>
@@ -28,13 +29,6 @@ export default {
 }
 </script>
 <style scoped>
-    .app {
-        height: 100vh;
-        background: url('../../static/img/about.png') no-repeat;
-        background-position: top right;
-        background-size: 59.375vw 100vh;
-    }
-
     .about {
         width: 32%;
         padding: 0 0 0 3%;
@@ -52,4 +46,12 @@ export default {
         line-height: 180%;
     }
 
+    .about__bg {
+        position: absolute;
+        width: 59.375vw;
+        height: 100vh;
+        z-index: 1;
+        top: 0;
+        right: 0;
+    }
 </style>

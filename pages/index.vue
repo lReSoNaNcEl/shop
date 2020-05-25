@@ -16,9 +16,9 @@
 
         <div class="production">
             <h2 class="production__title">Наши работы</h2>
-                <Hooper ref="carousel" :itemsToShow="3" class="slider">
+                <Hooper ref="carousel" :playSpeed="3000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
                     <Slide v-for="photo in production[currentPage - 1].photos">
-                        <img @click="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                        <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
                     </Slide>
                 </Hooper>
             <div class="photos">
@@ -39,6 +39,7 @@
          currentSlide: 1,
          currentPage: 1,
          production: [],
+         switchSlides: null
      }),
      methods: {
          sliderObserver(e) {
@@ -54,10 +55,19 @@
          },
          sliderScroll(e) {
              this.currentSlide = +this.$refs.carousel.currentSlide + 1
+
+             if (this.currentSlide > this.production.length || this.currentSlide < 1)
+                 this.currentSlide = 1
          }
      },
      created() {
          this.production = this.$store.getters['production/getPreview']
+     },
+     mounted() {
+         this.switchSlides = setInterval(this.sliderScroll, 10)
+     },
+     destroyed() {
+         clearInterval(this.switchSlides)
      },
      components: {Header, Footer, Hooper, Slide}
  }
@@ -80,7 +90,7 @@
         height: 100vh;
         background-size: 100% 100%;
         clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        z-index: 1;
+        z-index: 2;
     }
 
     .preview {

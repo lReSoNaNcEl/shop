@@ -33,7 +33,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 2;
+        border-bottom: 1px solid #CCCCCC;
     }
 
     .header__logo {
@@ -41,11 +41,18 @@ export default {
         height: 4.16vw;
     }
 
+    .navmenu__navmenu {
+        position: relative;
+    }
+
     .navmenu__link {
+        position: relative;
+        top: 0;
         margin: 0 0 0 3.125vw;
         color: white;
         font-size: .9375vw;
         font-weight: 600;
         text-transform: uppercase;
+        z-index: 10;
     }
 </style>
