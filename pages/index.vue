@@ -59,6 +59,7 @@
 
              if (this.currentSlide > this.production[this.currentPage - 1].photos.length || this.currentSlide < 1)
                  this.currentSlide = 1
+
          }
      },
      created() {

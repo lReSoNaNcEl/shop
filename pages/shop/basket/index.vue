@@ -5,7 +5,7 @@
             <h1 class="basket__title title">Корзина</h1>
             <div class="basket__wrapper">
                 <div class="basket__products">
-                    <Product v-for="product in products" :id="product.id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>
+                    <Product v-for="product in getBasket" :id="product.id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>
                 </div>
                 <form class="basket__payment">
                     <h2 class="payment__title">Данные покупателя</h2>
@@ -54,9 +54,11 @@
     export default {
         computed: {
             products() {return this.$store.getters['product/getProducts']},
+            getBasket() {return this.$store.getters['basket/getBasket']},
         },
         created() {
-            console.log(this.products)
+            this.$store.commit('basket/syncBasket')
+            this.basket = this.$store.getters['basket/getBasket']
         },
         components: {Header, Footer, Product}
     }

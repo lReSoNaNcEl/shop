@@ -7,10 +7,11 @@
             <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб./кв.м</div>
             <div class="product__volume"> {{volume}} кв.м</div>
         </div>
-        <div class="product__controls">
-            <nuxt-link to="#" class="product__btn btn">Купить</nuxt-link>
+        <div v-show="!showCloseIcon" class="product__controls">
+            <div :data-id="id" @click="addProductToBasket" class="product__btn btn">Купить</div>
             <nuxt-link :to="`/shop/product/${id}`" class="product__info">Подробнее</nuxt-link>
         </div>
+        <img ref="icon" :data-id="id" @click="removeProductfromBasket" @mouseleave="focusLeaveCloseIcon" @mouseover="hoverCloseIcon" v-show="showCloseIcon" class="product__icon" src="/img/close_static.svg"/>
     </div>
 </template>
 
@@ -24,12 +25,42 @@ export default {
         price: Number,
         volume: Number
     },
+    data: () => ({
+        showCloseIcon: false
+    }),
+    methods: {
+        hoverCloseIcon() {
+            this.$refs.icon.src = '/img/close_active.svg'
+        },
+        focusLeaveCloseIcon() {
+            this.$refs.icon.src = '/img/close_static.svg'
+        },
+        removeProductfromBasket(e) {
+            const id = +e.target.getAttribute('data-id')
+            this.$store.commit('basket/deleteProduct', id)
+            this.$store.commit('basket/syncBasket')
+        },
+        addProductToBasket(e) {
+            const id = +e.target.getAttribute('data-id')
+            const product = this.products.find(product => product.id === id)
+            this.$store.commit('basket/addProduct', product)
+            this.$store.commit('basket/syncBasket')
+        }
+    },
+    computed: {
+        products() {return this.$store.getters['product/getProducts']}
+    },
     mounted() {
         if (location.pathname === '/shop/basket') {
             const product = this.$refs.product
 
             product.style.width = '25%'
             product.style.margin = '0 8% 2.083vw 0'
+
+            this.showCloseIcon = true
+        }
+        else {
+            this.showCloseIcon = false
         }
     }
 }
@@ -37,6 +68,7 @@ export default {
 
 <style scoped>
     .product {
+        position: relative;
         width: 23%;
         margin: 0 0 2.083vw 2%;
     }
@@ -50,7 +82,7 @@ export default {
     }
 
     .product__desc {
-        height: 4.6875vw;
+        height: 5vw;
         font-size: .83vw;
         line-height: 150%;
     }
@@ -66,14 +98,18 @@ export default {
         align-items: center;
     }
 
-    .product__price {
-
-    }
-
     .product__info {
         font-size: .83vw;
         color: #7D7D7D;
         margin: 0 0 0 .52083vw;
+        cursor: pointer;
+    }
+
+    .product__icon {
+        width: .83vw;
+        position: absolute;
+        top: 11.5625vw;
+        left: 13.5416vw;
         cursor: pointer;
     }
 </style>
