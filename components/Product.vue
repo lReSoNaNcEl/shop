@@ -1,3 +1,4 @@
+import Noty from "noty";
 <template>
     <div class="product" ref="product">
         <img class="product__img" :src="img"/>
@@ -16,6 +17,9 @@
 </template>
 
 <script>
+import Noty from 'noty'
+import 'noty/lib/noty.css'
+import 'noty/lib/themes/metroui.css'
 export default {
     props: {
         id: Number,
@@ -39,12 +43,26 @@ export default {
             const id = +e.target.getAttribute('data-id')
             this.$store.commit('basket/deleteProduct', id)
             this.$store.commit('basket/syncBasket')
+            new Noty({
+                type: 'error',
+                layout: 'topRight',
+                theme: 'metroui',
+                text: 'Товар убран из корзины',
+                timeout: '1000',
+            }).show()
         },
         addProductToBasket(e) {
             const id = +e.target.getAttribute('data-id')
             const product = this.products.find(product => product.id === id)
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')
+            new Noty({
+                type: 'success',
+                layout: 'topRight',
+                theme: 'metroui',
+                text: 'Товар добавлен в корзину',
+                timeout: '1500',
+            }).show()
         }
     },
     computed: {

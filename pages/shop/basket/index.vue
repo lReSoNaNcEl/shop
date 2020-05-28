@@ -5,7 +5,7 @@
             <h1 class="basket__title title">Корзина</h1>
             <div class="basket__wrapper">
                 <div class="basket__products">
-                    <Product v-for="product in getBasket" :id="product.id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>
+                    <Product v-for="product in basket" :id="product.id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>
                 </div>
                 <form class="basket__payment">
                     <h2 class="payment__title">Данные покупателя</h2>
@@ -30,12 +30,12 @@
                         <input class="field__input" type="text" placeholder="г. Липецк ул.Космонавтов д.1">
                     </div>
 
-                    <p class="payment__amount">Всего товаров: <span class="highlight">6</span></p>
+                    <p class="payment__amount">Всего товаров: <span class="highlight">{{basket.length}}</span></p>
                     <p class="payment__delivery">Стоимость доставки: <span class="highlight">500</span> р.</p>
-                    <p class="payment__total">Всего к оплате: <span class="highlight">8500</span> р.</p>
+                    <p class="payment__total">Всего к оплате: <span class="highlight">{{totalPrice}}</span> р.</p>
 
                     <div class="payment__wrapper">
-                        <button type="button" class="payment__btn btn">Оплатить</button>
+                        <button type="button" class="payment__btn btn">Отправить заявку</button>
                         <p class="payment__info">
                             *при нажатии кнопки “Оплатить”<br>
                             вы принимаете условия оферты
@@ -52,13 +52,18 @@
     import Footer from '@/components/Footer'
     import Product from '@/components/Product'
     export default {
+        data: () => ({
+        }),
+        'getBasket': function() {
+            console.log('test')
+        },
         computed: {
             products() {return this.$store.getters['product/getProducts']},
-            getBasket() {return this.$store.getters['basket/getBasket']},
+            basket() {return this.$store.getters['basket/getBasket']},
+            totalPrice() {return this.$store.getters['basket/getTotalPrice']}
         },
         created() {
             this.$store.commit('basket/syncBasket')
-            this.basket = this.$store.getters['basket/getBasket']
         },
         components: {Header, Footer, Product}
     }
@@ -123,6 +128,10 @@
         display: flex;
         align-items: center;
         margin: 1.302083vw 0 0 0;
+    }
+
+    .payment__btn {
+        padding: .52083vw .7vw;
     }
 
     .payment__info {

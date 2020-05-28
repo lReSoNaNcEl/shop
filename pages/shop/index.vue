@@ -60,6 +60,8 @@ export default {
 
         }
     },
+    mounted() {
+    },
     components: {Header, Footer, Product}
 }
 </script>

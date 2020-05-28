@@ -93,6 +93,7 @@
         background-size: 100% 100%;
         clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
         z-index: 2;
+        filter: grayscale(50%);
     }
 
     .preview {
