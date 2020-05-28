@@ -5,6 +5,10 @@
     font-family: Montserrat, sans-serif;
 }
 
+body {
+    font-family: Montserrat, sans-serif;
+}
+
 a {
     text-decoration: none;
     font: inherit;
@@ -71,6 +75,30 @@ input {
     }
     to {
         display: block;
+        opacity: 1;
+    }
+}
+
+@keyframes ShiftLeft {
+    from {
+        position: relative;
+        right: 15.625vw;
+        opacity: 0;
+    }
+    to {
+        position: relative;
+        right: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes ShiftRight {
+    from {
+        right: -1200px;
+        opacity: 0;
+    }
+    to {
+        right: 0;
         opacity: 1;
     }
 }

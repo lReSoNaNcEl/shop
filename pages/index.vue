@@ -14,22 +14,21 @@
             </div>
         </div>
 
-        <div class="production">
+        <div ref="production" class="production">
             <h2 class="production__title">Наши работы</h2>
-                <Hooper ref="carousel" :playSpeed="3000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
-                    <Slide v-for="photo in production[currentPage - 1].photos">
-                        <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
-                    </Slide>
-                </Hooper>
-            <div class="photos">
-                <img ref="photo" class="photos__item" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
-            </div>
+            <Hooper ref="carousel" :playSpeed="3000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
+                <Slide v-for="photo in production[currentPage - 1].photos">
+                    <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                </Slide>
+            </Hooper>
         </div>
+        <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
         <Footer/>
     </div>
 </template>
 
 <script>
+ import 'animate.css/animate.compat.css'
  import {Hooper, Slide} from 'hooper'
  import 'hooper/dist/hooper.css';
  import Header from '@/components/Header'
@@ -41,18 +40,67 @@
          production: [],
          switchSlides: null
      }),
-     methods: {
-         sliderObserver(e) {
-                this.$refs.carousel.currentSlide = 0
+     watch: {
+        currentSlide: function () {
+            const elements = [
+                {
+                    DOM: this.$refs.photo,
+                    duration: 600,
+                    name: 'ShiftRight'
+                },
+            ]
 
-                 if (e.deltaY > 0) {
-                     if (this.currentPage < this.production.length)
-                             this.currentPage++
+            this.setAnimation(elements)
+            this.resetAnimation(elements)
+        }
+     },
+     methods: {
+         setAnimation(items) {
+             for (let item of items) item.DOM.style.animation = `${item.duration}ms ${item.name}`
+         },
+         resetAnimation(items) {
+             for (let item of items)
+                 setTimeout(() => item.DOM.style.animation = null, item.duration)
+         },
+         sliderObserver(e) {
+             this.$refs.carousel.currentSlide = 0
+             const elements = [
+                 {
+                     DOM: this.$refs.title,
+                     duration: 700,
+                     name: 'ShiftLeft'
+                 },
+                 {
+                     DOM: this.$refs.desc,
+                     duration: 900,
+                     name: 'ShiftLeft'
+                 },
+                 {
+                     DOM: this.$refs.photo,
+                     duration: 800,
+                     name: 'ShiftRight'
+                 },
+                 {
+                     DOM: this.$refs.production,
+                     duration: 1000,
+                     name: 'ShiftLeft'
                  }
-                 else if (e.deltaY < 0) {
-                     if (this.currentPage > 1)
-                             this.currentPage--
+             ]
+
+             if (e.deltaY > 0) {
+                 if (this.currentPage < this.production.length) {
+                     this.currentPage++
+                     this.setAnimation(elements)
+                     this.resetAnimation(elements)
                  }
+             }
+             else if (e.deltaY < 0) {
+                 if (this.currentPage > 1) {
+                     this.currentPage--
+                     this.setAnimation(elements)
+                     this.resetAnimation(elements)
+                 }
+             }
          },
          sliderScroll(e) {
              this.currentSlide = +this.$refs.carousel.currentSlide + 1
@@ -75,32 +123,27 @@
  }
 </script>
 
-<style scoped>
-
-    .photos {
+<style>
+    body {
+        overflow: hidden;
+    }
+    .photo {
         position: absolute;
         width: 59.375vw;
         height: 100vh;
-        z-index: 1;
+        z-index: 2;
         top: 0;
         right: 0;
-    }
-
-    .photos__item {
-        position: relative;
-        width: 100%;
-        height: 100vh;
         background-size: 100% 100%;
         clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        z-index: 2;
         filter: grayscale(50%);
     }
 
     .preview {
-        position: relative;
         width: 32%;
         padding: 0 0 0 3%;
         z-index: 2;
+        overflow: hidden;
     }
 
     .preview__desc {
@@ -139,7 +182,11 @@
 
     .hint__icon {height: 8.85416vw;}
 
-    .production {padding: 0 0 0 3%;}
+    .production {
+        position: relative;
+        padding: 0 0 0 3%;
+        z-index: 0;
+    }
 
     .production__title {
         font-size: 1.4583vw;
