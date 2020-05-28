@@ -22,6 +22,11 @@ export default {
             this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
         }
 
+        if (location.pathname === '/')
+            document.body.style.overflow = 'hidden'
+        else
+            document.body.style.overflow = null
+
     }
 }
 </script>

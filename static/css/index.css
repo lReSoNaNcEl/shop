@@ -94,7 +94,7 @@ input {
 
 @keyframes ShiftRight {
     from {
-        right: 62.5vw;
+        right: -62.5vw;
         opacity: 0;
     }
     to {

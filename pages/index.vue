@@ -1,5 +1,5 @@
 <template>
-    <div @wheel="sliderObserver">
+    <div class="main" @wheel="sliderObserver">
         <Header/>
         <div class="preview">
             <h1 ref="title" class="preview__title title">{{production[currentPage - 1].name}}</h1>
@@ -123,10 +123,13 @@
  }
 </script>
 
-<style>
-    body {
+<style scoped>
+    .main {
         overflow: hidden;
     }
+    /** {*/
+    /*    overflow: hidden !important;*/
+    /*}*/
     .photo {
         position: absolute;
         width: 59.375vw;
