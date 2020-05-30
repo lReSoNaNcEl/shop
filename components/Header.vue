@@ -21,12 +21,6 @@ export default {
             for (let link of links) link.style.color = 'black'
             this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
         }
-
-        if (location.pathname === '/')
-            document.body.style.overflow = 'hidden'
-        else
-            document.body.style.overflow = null
-
     }
 }
 </script>
@@ -46,10 +40,6 @@ export default {
         height: 4.16vw;
     }
 
-    .navmenu__navmenu {
-        position: relative;
-    }
-
     .navmenu__link {
         position: relative;
         top: 0;
@@ -59,5 +49,22 @@ export default {
         font-weight: 600;
         text-transform: uppercase;
         z-index: 10;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .header {
+            border: none;
+            padding: 2.1484375vw 3%;
+        }
+
+        .header__logo {
+            width: 14.648vw;
+            height: 6.3476vw;
+        }
+
+        .navmenu__link {
+            font-size: 1.3671875vw;
+            color: black;
+        }
     }
 </style>

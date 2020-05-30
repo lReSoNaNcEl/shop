@@ -23,4 +23,12 @@
         background-color: #C9C9C9;
         transform: rotate(90deg);
     }
+
+    @media only screen and (max-width: 1024px) {
+        .footer {
+            position: static;
+            font-size: 1.5625vw;
+            margin: 13.4375vw 0 2.34375vw 0;
+        }
+    }
 </style>

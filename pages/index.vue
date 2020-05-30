@@ -14,6 +14,8 @@
             </div>
         </div>
 
+        <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
+
         <div ref="production" class="production">
             <h2 class="production__title">Наши работы</h2>
             <Hooper ref="carousel" :playSpeed="3000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
@@ -22,7 +24,6 @@
                 </Slide>
             </Hooper>
         </div>
-        <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
         <Footer/>
     </div>
 </template>
@@ -125,11 +126,9 @@
 
 <style scoped>
     .main {
-        overflow: hidden;
+        overflow-x: hidden;
     }
-    /** {*/
-    /*    overflow: hidden !important;*/
-    /*}*/
+
     .photo {
         position: absolute;
         width: 59.375vw;
@@ -145,6 +144,7 @@
     .preview {
         width: 32%;
         padding: 0 0 0 3%;
+        position: relative;
         z-index: 2;
         overflow: hidden;
     }
@@ -208,6 +208,75 @@
         cursor: pointer;
         margin: 0 1.875vw 0 0;
         border-radius: .52083vw;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .photo {
+            width: 100%;
+            height: 73.2421875vw;
+            clip-path: none;
+            top: 10.7421875vw;
+            z-index: 0;
+            border-radius: 1.46484375vw;
+        }
+
+        .preview {
+            width: 60%;
+            z-index: 1;
+            color: white;
+        }
+
+        .preview__title {
+            margin: 12.6953125vw 0 0 0;
+        }
+
+        .preview__desc {
+            height: 24.4140625vw;
+            font-size: 1.7578125vw;
+            margin: 4.1015625vw 0 0 0;
+        }
+
+        .preview__wrapper {margin: 0;}
+
+        .preview__link {
+            font-size: 1.5625vw;
+            border: 1px solid white;
+            padding: 1.3671875vw 4.1015625vw;
+        }
+
+        .preview__amount {
+            font-size: 1.171875vw;
+            font-weight: 400;
+            margin: 0 0 0 1.46484375vw;
+        }
+
+        .production {
+            position: static;
+            margin: 27.34375vw 0 0 0;
+        }
+
+        .production__title {
+            font-size: 2.734375vw;
+            margin: 0 0 3.125vw 0;
+        }
+
+        .slider {
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0 0 2.083vw 0;
+        }
+
+        .hooper {
+            height: 13.671875vw !important;
+        }
+
+        .slider__item {
+            width: 29.296875vw;
+            cursor: pointer;
+            margin: 0 1.875vw 0 0;
+            border-radius: .52083vw;
+            height: 13.671875vw !important;
+        }
     }
 
 </style>

@@ -54,4 +54,19 @@ export default {
         top: 0;
         right: 0;
     }
+
+    @media only screen and (max-width: 1024px) {
+        .about {
+            width: 40%;
+        }
+
+        /*.about__bg {*/
+        /*    width: 100%;*/
+        /*    height: 73.2421875vw;*/
+        /*    clip-path: none;*/
+        /*    top: 10.7421875vw;*/
+        /*    z-index: 0;*/
+        /*    border-radius: 1.46484375vw;*/
+        /*}*/
+    }
 </style>

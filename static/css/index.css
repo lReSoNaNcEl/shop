@@ -57,6 +57,19 @@ input {
     color: #617D91;
 }
 
+@media only screen and (max-width: 1024px) {
+    .title {
+        font-size: 4.6875vw;
+        margin: 12.6953125vw 0 0 0;
+    }
+
+    .paragraph {
+        /*height: 24.4140625vw;*/
+        font-size: 1.7578125vw;
+        margin: 4.1015625vw 0 0 0;
+    }
+}
+
 @keyframes Hide {
     from {
         display: block;
@@ -94,16 +107,16 @@ input {
 
 @keyframes ShiftRight {
     from {
-        right: -62.5vw;
+        /*right: -62.5vw;*/
         opacity: 0;
     }
     to {
-        right: 0;
+        /*right: 0;*/
         opacity: 1;
     }
 }
 
-.hooper{
+.hooper {
     height: 7.2916vw !important;
     outline: none !important;
 }
