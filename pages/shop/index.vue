@@ -47,20 +47,17 @@ export default {
             const filterParams = e.currentTarget.nextElementSibling
             const icon = e.currentTarget.lastChild
 
-            setTimeout(() => filterParams.classList.contains('hide') ? filterParams.style.display = 'none' : filterParams.style.display = 'block', 300)
+            setTimeout(() => filterParams.classList.contains('show') ? filterParams.style.display = 'block' : filterParams.style.display = 'none', 300)
 
-            if (filterParams.classList.toggle('hide')) {
-                icon.style.transform = 'rotate(180deg)'
-                filterParams.style.animation = '.6s Hide'
-            }
-            else {
+            if (filterParams.classList.toggle('show')) {
                 icon.style.transform = 'rotate(0deg)'
                 filterParams.style.animation = '.6s Show'
             }
-
+            else {
+                icon.style.transform = 'rotate(180deg)'
+                filterParams.style.animation = '.6s Hide'
+            }
         }
-    },
-    mounted() {
     },
     components: {Header, Footer, Product}
 }
@@ -78,9 +75,7 @@ export default {
 
     .catalog__filter {width: 15%;}
 
-    .filter__title {
-        font-size: 1.25vw;
-    }
+    .filter__title {font-size: 1.25vw;}
 
     .condition__type {
         display: flex;
@@ -88,14 +83,15 @@ export default {
         margin: .83vw 0;
     }
 
-    .type__text {
-        font-size: .9375vw;
-    }
+    .condition__params {display: none;}
+
+    .type__text {font-size: .9375vw;}
 
     .type__icon {
         width: .5vw;
         margin: .2083vw 0 0 .3125vw;
         transition: .6s all;
+        transform: rotate(180deg);
     }
 
     .params__item {

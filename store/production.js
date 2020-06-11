@@ -1,5 +1,5 @@
 export const state = () => ({
-    preview: [
+    production: [
         {
             id: 1,
             name: 'Кровля',
@@ -34,5 +34,5 @@ export const state = () => ({
 })
 
 export const getters = {
-    getPreview: state => state.preview
+    getProduction: state => state.production
 }

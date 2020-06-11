@@ -18,18 +18,11 @@
 
         <div ref="production" class="production">
             <h2 class="production__title">Наши работы</h2>
-            <Hooper @slide="updateCarousel" ref="carousel" :playSpeed="6000" transition="600" :autoPlay="true" :itemsToShow="3"
-                    :infiniteScroll="true"
-                    class="slider">
-                <Slide v-for="(photo,i) in production[currentPage - 1].photos" >
+            <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
+                <Slide v-for="(photo, i) in production[currentPage - 1].photos" >
                     <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
                 </Slide>
             </Hooper>
-<!--            <Hooper ref="carousel" :playSpeed="12000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">-->
-<!--                <Slide v-for="photo in production[currentPage - 1].photos">-->
-<!--                    <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>-->
-<!--                </Slide>-->
-<!--            </Hooper>-->
         </div>
         <Footer/>
     </div>
@@ -48,10 +41,14 @@
          production: [],
          switchSlides: null,
          delay: false,
-         delayTime: 1000,
+         delayTime: 1500,
          myCarouselData: 0,
          sliderConfig: {
-
+             playSpeed: 6000,
+             autoPlay: true,
+             itemsToShow: 3,
+             infiniteScroll: true,
+             transition: 600
          }
      }),
      watch: {
@@ -59,8 +56,8 @@
             const elements = [
                 {
                     DOM: this.$refs.photo,
-                    duration: 600,
-                    name: 'ShiftRight'
+                    duration: 1500,
+                    name: 'Show'
                 },
             ]
 
@@ -87,23 +84,23 @@
              const elements = [
                  {
                      DOM: this.$refs.title,
-                     duration: 700,
+                     duration: 1200,
                      name: 'ShiftLeft'
                  },
                  {
                      DOM: this.$refs.desc,
-                     duration: 900,
+                     duration: 1200,
                      name: 'ShiftLeft'
                  },
                  {
                      DOM: this.$refs.photo,
-                     duration: 800,
-                     name: 'ShiftRight'
+                     duration: 1500,
+                     name: 'Show'
                  },
                  {
                      DOM: this.$refs.production,
-                     duration: 1000,
-                     name: 'ShiftLeft'
+                     duration: 1500,
+                     name: 'Show'
                  }
              ]
 
@@ -137,7 +134,7 @@
          }
      },
      created() {
-         this.production = this.$store.getters['production/getPreview']
+         this.production = this.$store.getters['production/getProduction']
      },
      mounted() {
          this.switchSlides = setInterval(this.sliderScroll, 10)
@@ -228,7 +225,7 @@
     }
 
     .slider__item {
-        width: 15.625vw;
+        width: 14.5vw;
         height: 7.2916vw;
         cursor: pointer;
         margin: 0 1.875vw 0 0;

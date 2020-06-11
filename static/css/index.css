@@ -107,11 +107,13 @@ input {
 
 @keyframes ShiftRight {
     from {
-        /*right: -62.5vw;*/
+        position: absolute;
+        right: -62.5vw;
         opacity: 0;
     }
     to {
-        /*right: 0;*/
+        position: absolute;
+        right: 0;
         opacity: 1;
     }
 }
