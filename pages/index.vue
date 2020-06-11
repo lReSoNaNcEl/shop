@@ -18,7 +18,7 @@
 
         <div ref="production" class="production">
             <h2 class="production__title">Наши работы</h2>
-            <Hooper ref="carousel" :playSpeed="3000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
+            <Hooper ref="carousel" :playSpeed="12000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
                 <Slide v-for="photo in production[currentPage - 1].photos">
                     <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
                 </Slide>
@@ -39,7 +39,12 @@
          currentSlide: 1,
          currentPage: 1,
          production: [],
-         switchSlides: null
+         switchSlides: null,
+         delay: false,
+         delayTime: 1000,
+         sliderConfig: {
+
+         }
      }),
      watch: {
         currentSlide: function () {
@@ -88,18 +93,24 @@
                  }
              ]
 
-             if (e.deltaY > 0) {
-                 if (this.currentPage < this.production.length) {
-                     this.currentPage++
-                     this.setAnimation(elements)
-                     this.resetAnimation(elements)
+             if (this.delay !== true) {
+                 if (e.deltaY > 0) {
+                     if (this.currentPage < this.production.length) {
+                         this.delay = true
+                         this.currentPage++
+                         this.setAnimation(elements)
+                         this.resetAnimation(elements)
+                         setTimeout(() => this.delay = false, this.delayTime)
+                     }
                  }
-             }
-             else if (e.deltaY < 0) {
-                 if (this.currentPage > 1) {
-                     this.currentPage--
-                     this.setAnimation(elements)
-                     this.resetAnimation(elements)
+                 else if (e.deltaY < 0) {
+                     if (this.currentPage > 1) {
+                         this.delay = true
+                         this.currentPage--
+                         this.setAnimation(elements)
+                         this.resetAnimation(elements)
+                         setTimeout(() => this.delay = false, this.delayTime)
+                     }
                  }
              }
          },

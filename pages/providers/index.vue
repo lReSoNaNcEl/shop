@@ -6,17 +6,11 @@
                 <h1 class="providers__title title">Поставщики</h1>
                 <p class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
             </div>
-            <Hooper class="slider" :infiniteScroll="true" :itemsToShow="3" group="group1">
+            <Hooper class="slider" :infiniteScroll="true" :itemsToShow="3">
                 <Slide v-for="provider of providers[0]" class="slider__item">
                     <img class="slider__item" :src="provider.icon"/>
                 </Slide>
             </Hooper>
-            <Hooper class="slider" :infiniteScroll="true" :itemsToShow="3" group="group2">
-                <Slide v-for="provider of providers[1]" class="slider__item">
-                    <img class="slider__item" :src="provider.icon"/>
-                </Slide>
-            </Hooper>
-
             <img class="providers__bg" src="/img/product/5.png"/>
         </section>
         <Footer/>
