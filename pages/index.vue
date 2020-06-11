@@ -18,11 +18,18 @@
 
         <div ref="production" class="production">
             <h2 class="production__title">Наши работы</h2>
-            <Hooper ref="carousel" :playSpeed="12000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">
-                <Slide v-for="photo in production[currentPage - 1].photos">
-                    <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+            <Hooper @slide="updateCarousel" ref="carousel" :playSpeed="6000" transition="600" :autoPlay="true" :itemsToShow="3"
+                    :infiniteScroll="true"
+                    class="slider">
+                <Slide v-for="(photo,i) in production[currentPage - 1].photos" >
+                    <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
                 </Slide>
             </Hooper>
+<!--            <Hooper ref="carousel" :playSpeed="12000" :autoPlay="true" :itemsToShow="3" :infiniteScroll="true" class="slider">-->
+<!--                <Slide v-for="photo in production[currentPage - 1].photos">-->
+<!--                    <img @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>-->
+<!--                </Slide>-->
+<!--            </Hooper>-->
         </div>
         <Footer/>
     </div>
@@ -42,6 +49,7 @@
          switchSlides: null,
          delay: false,
          delayTime: 1000,
+         myCarouselData: 0,
          sliderConfig: {
 
          }
@@ -61,6 +69,12 @@
         }
      },
      methods: {
+         updateCarousel(payload) {
+             this.myCarouselData = payload.currentSlide;
+         },
+         slideTo(num){
+             this.$refs.carousel.slideTo(num);
+         },
          setAnimation(items) {
              for (let item of items) item.DOM.style.animation = `${item.duration}ms ${item.name}`
          },
