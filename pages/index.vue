@@ -14,6 +14,10 @@
             </div>
         </div>
 
+        <div class="preview__controller">
+            <div @click="switchPages" v-for="item in production" :data-id="item.id" class="controller__item">{{item.name}} -</div>
+        </div>
+
         <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
 
         <div ref="production" class="production">
@@ -66,6 +70,10 @@
         }
      },
      methods: {
+         switchPages(e) {
+             const id = +e.currentTarget.getAttribute('data-id')
+             this.currentPage = id;
+         },
          updateCarousel(payload) {
              this.myCarouselData = payload.currentSlide;
          },
@@ -189,6 +197,24 @@
         margin: 0 0 0 .833vw;
     }
 
+    .preview__controller {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        position: absolute;
+        top: 22vw;
+        right: 3%;
+        z-index: 1000;
+        font-size: .9vw;
+        color: white;
+        font-weight: 600;
+    }
+
+    .controller__item {
+        margin: 0 0 1.2vw 0;
+        cursor: pointer;
+    }
+
     .preview__hint {
         display: flex;
         position: absolute;
@@ -270,6 +296,14 @@
             font-size: 1.171875vw;
             font-weight: 400;
             margin: 0 0 0 1.46484375vw;
+        }
+
+        .preview__controller {
+            font-size: 1.6vw;
+            top: 45vw;
+        }
+        .controller__item {
+            margin: 0 0 2vw 0;
         }
 
         .production {

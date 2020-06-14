@@ -70,11 +70,6 @@ export default {
     },
     mounted() {
         if (location.pathname === '/shop/basket') {
-            const product = this.$refs.product
-
-            product.style.width = '25%'
-            product.style.margin = '0 8% 2.083vw 0'
-
             this.showCloseIcon = true
         }
         else {
@@ -83,51 +78,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    .product {
-        position: relative;
-        width: 23%;
-        margin: 0 0 2.083vw 2%;
-    }
-
-    .product__img {width: 100%;}
-
-    .product__title {
-        font-size: 1.14583vw;
-        text-transform: uppercase;
-        margin: 1.25vw 0 1.0416vw 0;
-    }
-
-    .product__desc {
-        height: 5vw;
-        font-size: .83vw;
-        line-height: 150%;
-    }
-
-    .product__wrapper {
-        display: flex;
-        font-size: .9375vw;
-        margin: 1.302083vw 0 1.5625vw 0;
-    }
-
-    .product__controls {
-        display: flex;
-        align-items: center;
-    }
-
-    .product__info {
-        font-size: .83vw;
-        color: #7D7D7D;
-        margin: 0 0 0 .52083vw;
-        cursor: pointer;
-    }
-
-    .product__icon {
-        width: .83vw;
-        position: absolute;
-        top: 11.5625vw;
-        left: 13.5416vw;
-        cursor: pointer;
-    }
-</style>
