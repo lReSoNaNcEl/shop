@@ -204,7 +204,7 @@
         position: absolute;
         top: 22vw;
         right: 3%;
-        z-index: 1000;
+        z-index: 3;
         font-size: .9vw;
         color: white;
         font-weight: 600;
