@@ -112,6 +112,15 @@ export default {
     }
 
     @media only screen and (max-width: 480px) {
+        .header {
+            padding: 6vw 3%;
+        }
+
+        .header__logo {
+            width: 30vw;
+            height: initial;
+        }
+
         .header__navmenu {
             display: none;
         }
@@ -157,7 +166,7 @@ export default {
         .header__toggle {
             position: relative;
             z-index: 5;
-            height: 6.510416vw;
+            height: 6vw;
             display: flex;
             justify-content: space-between;
             flex-direction: column;
@@ -165,7 +174,7 @@ export default {
         }
 
         .toggle__item {
-            width: 10vw;
+            width: 8vw;
             height: .8203125vw;
             background-color: black;
         }

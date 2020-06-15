@@ -333,6 +333,47 @@
             border-radius: .52083vw;
             height: 13.671875vw !important;
         }
+
+        @media only screen and (max-width: 480px) {
+            .photo {
+                height: 156.25vw;
+                top: 25vw;
+            }
+
+            .preview {
+                height: initial;
+                width: 100%;
+                padding: 0 3%;
+            }
+
+            .preview__controller {
+                display: none;
+            }
+
+            .preview__hint {
+                display: none;
+            }
+
+            .preview__desc {
+                height: initial;
+                font-size: 4.6vw;
+            }
+
+            .preview__wrapper {
+                margin: 5vw 0 0 0;
+            }
+
+            .preview__link {
+                font-size: 4.6vw;
+                padding: 1.5vw 6vw;
+                border-radius: 5px;
+            }
+
+            .preview__amount {
+                font-size: 3.8vw;
+                margin: 0 0 0 5vw;
+            }
+        }
     }
 
 </style>
