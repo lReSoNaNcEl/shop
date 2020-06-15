@@ -1,19 +1,21 @@
 <template>
     <div @wheel="sliderObserver">
         <Header/>
-        <section class="providers">
-            <div class="providers__wrapper">
-                <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
-                <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
-            </div>
-            <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
-                <Slide v-for="(photo, i) in providers[currentPage - 1].photos" >
-                    <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
-                </Slide>
-            </Hooper>
-            <img ref="photo" class="providers__bg" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
-        </section>
-        <Footer/>
+        <div class="wrapper">
+            <section class="providers">
+                <div class="providers__wrapper">
+                    <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
+                    <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
+                </div>
+                <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
+                    <Slide v-for="(photo, i) in providers[currentPage - 1].photos">
+                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                    </Slide>
+                </Hooper>
+                <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
+            </section>
+            <Footer/>
+        </div>
     </div>
 </template>
 
@@ -151,7 +153,6 @@ export default {
     .slider {
         width: 50%;
         overflow-x: hidden;
-        margin: 0 0 2.083vw 0;
     }
 
     .slider__item {
@@ -162,34 +163,12 @@ export default {
         border-radius: .52083vw;
     }
 
-    .providers__bg {
-        position: absolute;
-        width: 59.375vw;
-        height: 100vh;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        -webkit-clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        -webkit-filter: grayscale(50%);
-        filter: grayscale(50%);
-    }
-
     @media only screen and (max-width: 1024px) {
         .providers__wrapper {
             color: white;
             position: relative;
             z-index: 1;
             margin: 0 0 32vw 0;
-        }
-
-        .providers__bg {
-            width: 100%;
-            height: 73.2421875vw;
-            clip-path: none;
-            top: 10.7421875vw;
-            z-index: 0;
-            border-radius: 1.46484375vw;
         }
 
         .slider {
@@ -210,6 +189,27 @@ export default {
             margin: 0 1.875vw 0 0;
             border-radius: .52083vw;
             height: 13.671875vw !important;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .slider {
+                margin: 82vw 0 0 0;
+            }
+
+            .providers {
+                height: initial;
+                width: 100%;
+                padding: 0 3%;
+            }
+            .providers__desc {
+                height: initial;
+                font-size: 4.6vw;
+            }
+
+            .providers__wrapper {
+                width: 100%;
+                margin: 5vw 0 0 0;
+            }
         }
     }
 </style>

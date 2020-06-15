@@ -1,34 +1,36 @@
 <template>
     <div class="main" @wheel="sliderObserver">
         <Header/>
-        <div class="preview">
-            <h1 ref="title" class="preview__title title">{{production[currentPage - 1].name}}</h1>
-            <p ref="desc" class="preview__desc">{{production[currentPage - 1].desc}}</p>
-            <div class="preview__wrapper">
-                <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
-                <p class="preview__amount">525 товаров</p>
+        <div class="wrapper">
+            <div class="preview">
+                <h1 ref="title" class="preview__title title">{{production[currentPage - 1].name}}</h1>
+                <p ref="desc" class="preview__desc">{{production[currentPage - 1].desc}}</p>
+                <div class="preview__wrapper">
+                    <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
+                    <p class="preview__amount">525 товаров</p>
+                </div>
+                <div class="preview__hint">
+                    <p class="hint__text">Крутите колёсико</p>
+                    <img class="hint__icon" src="img/hint.svg"/>
+                </div>
             </div>
-            <div class="preview__hint">
-                <p class="hint__text">Крутите колёсико</p>
-                <img class="hint__icon" src="img/hint.svg"/>
+
+            <div class="preview__controller">
+                <div @click="switchPages" v-for="item in production" :data-id="item.id" class="controller__item">{{item.name}} —</div>
             </div>
-        </div>
 
-        <div class="preview__controller">
-            <div @click="switchPages" v-for="item in production" :data-id="item.id" class="controller__item">{{item.name}} -</div>
-        </div>
+            <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
 
-        <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
-
-        <div ref="production" class="production">
-            <h2 class="production__title">Наши работы</h2>
-            <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
-                <Slide v-for="(photo, i) in production[currentPage - 1].photos" >
-                    <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
-                </Slide>
-            </Hooper>
+            <div ref="production" class="production">
+                <h2 class="production__title">Наши работы</h2>
+                <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
+                    <Slide v-for="(photo, i) in production[currentPage - 1].photos" >
+                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                    </Slide>
+                </Hooper>
+            </div>
+            <Footer/>
         </div>
-        <Footer/>
     </div>
 </template>
 
@@ -159,18 +161,6 @@
         overflow-x: hidden;
     }
 
-    .photo {
-        position: absolute;
-        width: 59.375vw;
-        height: 100vh;
-        z-index: 2;
-        top: 0;
-        right: 0;
-        background-size: 100% 100%;
-        clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        filter: grayscale(50%);
-    }
-
     .preview {
         width: 32%;
         padding: 0 0 0 3%;
@@ -188,7 +178,6 @@
     .preview__wrapper {
         display: flex;
         align-items: center;
-        margin: 0 0 3.125vw 0;
     }
 
     .preview__amount {
@@ -247,7 +236,6 @@
     .slider {
         width: 50%;
         overflow-x: hidden;
-        margin: 0 0 2.083vw 0;
     }
 
     .slider__item {
@@ -259,15 +247,6 @@
     }
 
     @media only screen and (max-width: 1024px) {
-        .photo {
-            width: 100%;
-            height: 73.2421875vw;
-            clip-path: none;
-            top: 10.7421875vw;
-            z-index: 0;
-            border-radius: 1.46484375vw;
-        }
-
         .preview {
             width: 60%;
             z-index: 1;
@@ -301,6 +280,9 @@
         .preview__controller {
             font-size: 1.6vw;
             top: 45vw;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: flex-end;
         }
         .controller__item {
             margin: 0 0 2vw 0;
@@ -335,9 +317,8 @@
         }
 
         @media only screen and (max-width: 480px) {
-            .photo {
-                height: 156.25vw;
-                top: 25vw;
+            .production {
+                margin: 32vw 0 0 0;
             }
 
             .preview {
@@ -346,22 +327,16 @@
                 padding: 0 3%;
             }
 
-            .preview__controller {
-                display: none;
-            }
+            .preview__controller {display: none;}
 
-            .preview__hint {
-                display: none;
-            }
+            .preview__hint {display: none;}
 
             .preview__desc {
                 height: initial;
                 font-size: 4.6vw;
             }
 
-            .preview__wrapper {
-                margin: 5vw 0 0 0;
-            }
+            .preview__wrapper {margin: 5vw 0 0 0;}
 
             .preview__link {
                 font-size: 4.6vw;
