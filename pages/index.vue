@@ -73,7 +73,7 @@
      },
      methods: {
          switchPages(e) {
-             const id = +e.currentTarget.getAttribute('data-id')
+             const id = +e.currentTarget.getAttribute('data-_id')
              this.currentPage = id;
          },
          updateCarousel(payload) {

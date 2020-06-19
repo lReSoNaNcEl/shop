@@ -7,7 +7,7 @@
 <!--                <div class="catalog__filter">-->
 <!--                    <h2 class="filter__title">Фильтр</h2>-->
 <!--                    <div class="filter__condition" v-for="filter in filters">-->
-<!--                        <div class="condition__type" @click="renderFilterParams" :data-id="filter.id">-->
+<!--                        <div class="condition__type" @click="renderFilterParams" :data-_id="filter._id">-->
 <!--                            <p class="type__text">{{filter.type}}</p>-->
 <!--                            <img class="type__icon" src="img/arrow_icon.svg"/>-->
 <!--                        </div>-->
@@ -21,11 +21,12 @@
 <!--                </div>-->
                 <div class="catalog__products">
                     <nuxt-link class="products__basket" to="/shop/basket">
-                        <img class="basket__img" src="img/basket.svg"/>
+                        <img class="basket__img" src="/img/basket.svg"/>
                     </nuxt-link>
                     <div class="products__container">
-                        <Product v-for="product in products" :id="product.id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>
-                    </div>
+<!--                        <Product v-for="product in products" :_id="product._id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>-->
+                        <Product @click="toCategory" :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/${item.id === 1 ? 'roof' : item.id === 2 ? 'facade' : item.id === 3 ? 'landscape' : null}`" :img="'/img/product/1.png'"/>
+                </div>
                 </div>
 <!--            </div>-->
         </section>
@@ -38,11 +39,19 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Product from '@/components/Product'
 export default {
+    data: () => ({
+        menu: null,
+    }),
     computed: {
         products() {return this.$store.getters['product/getProducts']},
         filters() {return this.$store.getters['filter/getFilters']},
     },
     methods: {
+        toCategory(e) {
+            const id = +e.target.getAttribute('data-_id')
+            this.$router.push(`/shop/category/${id}`)
+            console.log(id)
+        }
         // renderFilterParams(e) {
         //     const filterParams = e.currentTarget.nextElementSibling
         //     const icon = e.currentTarget.lastChild
@@ -58,6 +67,12 @@ export default {
         //         filterParams.style.animation = '.6s Hide'
         //     }
         // }
+    },
+    created() {
+        this.$store.dispatch('menu/saveMenu').then(() => {
+            this.menu = this.$store.getters['menu/getMenu']
+            console.log(this.menu)
+        })
     },
     components: {Header, Footer, Product}
 }

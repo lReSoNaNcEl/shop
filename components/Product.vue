@@ -1,10 +1,10 @@
 import Noty from "noty";
 <template>
-    <div class="product" ref="product">
+    <nuxt-link :to="link ? link : '#'" class="product" ref="product">
         <img class="product__img" :src="img"/>
         <h3 class="product__title">{{title}}</h3>
-        <p class="product__desc">{{desc}}</p>
-        <div class="product__wrapper">
+        <p v-show="renderInfo" class="product__desc">{{desc}}</p>
+        <div v-show="renderInfo" class="product__wrapper">
             <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб./кв.м</div>
             <div class="product__volume"> {{volume}} кв.м</div>
         </div>
@@ -13,7 +13,7 @@ import Noty from "noty";
             <nuxt-link :to="`/shop/product/${id}`" class="product__info">Подробнее</nuxt-link>
         </div>
         <img ref="icon" :data-id="id" @click="removeProductfromBasket" @mouseleave="focusLeaveCloseIcon" @mouseover="hoverCloseIcon" v-show="showCloseIcon" class="product__icon" src="/img/close_static.svg"/>
-    </div>
+    </nuxt-link>
 </template>
 
 <script>
@@ -27,9 +27,11 @@ export default {
         img: String,
         desc: String,
         price: Number,
-        volume: Number
+        volume: Number,
+        link: String
     },
     data: () => ({
+        renderInfo: true,
         showCloseIcon: false
     }),
     methods: {
@@ -40,7 +42,7 @@ export default {
             this.$refs.icon.src = '/img/close_static.svg'
         },
         removeProductfromBasket(e) {
-            const id = +e.target.getAttribute('data-id')
+            const id = +e.target.getAttribute('data-_id')
             this.$store.commit('basket/deleteProduct', id)
             this.$store.commit('basket/syncBasket')
             new Noty({
@@ -52,7 +54,7 @@ export default {
             }).show()
         },
         addProductToBasket(e) {
-            const id = +e.target.getAttribute('data-id')
+            const id = +e.target.getAttribute('data-_id')
             const product = this.products.find(product => product.id === id)
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')
@@ -74,6 +76,17 @@ export default {
         }
         else {
             this.showCloseIcon = false
+        }
+
+        if (location.pathname === '/shop/' ||
+            location.pathname === '/shop' ||
+            /\/roof/i.test(location.pathname) ||
+            /\/facede/i.test(location.pathname) ||
+            /\/landscape/i.test(location.pathname)
+        ) {
+            this.renderInfo = false
+            this.showCloseIcon = true
+            setTimeout(() => this.$refs.icon.style.display = 'none', 100)
         }
     }
 }
