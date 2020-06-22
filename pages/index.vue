@@ -202,6 +202,7 @@
     .controller__item {
         margin: 0 0 1.2vw 0;
         cursor: pointer;
+        text-align: right;
     }
 
     .preview__hint {
@@ -285,7 +286,6 @@
         }
         .controller__item {
             margin: 0 0 2vw 0;
-            text-align: right;
         }
 
         .production {
