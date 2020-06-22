@@ -25,7 +25,7 @@
                     </nuxt-link>
                     <div class="products__container">
 <!--                        <Product v-for="product in products" :_id="product._id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>-->
-                        <Product @click="toCategory" :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/${item.id === 1 ? 'roof' : item.id === 2 ? 'facade' : item.id === 3 ? 'landscape' : null}`" :img="'/img/product/1.png'"/>
+                        <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id - 1}/`" :img="'/img/product/1.png'"/>
                 </div>
                 </div>
 <!--            </div>-->
@@ -44,14 +44,9 @@ export default {
     }),
     computed: {
         products() {return this.$store.getters['product/getProducts']},
-        filters() {return this.$store.getters['filter/getFilters']},
+        // filters() {return this.$store.getters['filter/getFilters']},
     },
     methods: {
-        toCategory(e) {
-            const id = +e.target.getAttribute('data-_id')
-            this.$router.push(`/shop/category/${id}`)
-            console.log(id)
-        }
         // renderFilterParams(e) {
         //     const filterParams = e.currentTarget.nextElementSibling
         //     const icon = e.currentTarget.lastChild

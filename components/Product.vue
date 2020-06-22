@@ -80,9 +80,7 @@ export default {
 
         if (location.pathname === '/shop/' ||
             location.pathname === '/shop' ||
-            /\/roof/i.test(location.pathname) ||
-            /\/facede/i.test(location.pathname) ||
-            /\/landscape/i.test(location.pathname)
+            /\/category/i.test(location.pathname)
         ) {
             this.renderInfo = false
             this.showCloseIcon = true

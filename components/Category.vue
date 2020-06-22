@@ -2,7 +2,7 @@
     <div>
         <Header/>
         <section class="catalog">
-            <h1 class="catalog__title title">{{this.title}}</h1>
+            <h1 class="catalog__title title">{{title}}</h1>
             <div class="catalog__products">
                 <nuxt-link class="products__basket" to="/shop/basket">
                     <img class="basket__img" src="/img/basket.svg"/>
@@ -28,6 +28,13 @@
             category: null
         }),
         created() {
+            if (this.id !== undefined) {
+                this.$store.commit('menu/setCurrentMenuId', this.id + 1)
+                this.$store.dispatch('menu/saveMenuItem', this.$store.getters['menu/getCurrentMenuId']).then(() => {
+                    console.log(this.$store.getters['menu/getMenuItem'])
+                })
+            }
+
             this.$store.dispatch('menu/saveMenu').then(() => {
                 this.menu = this.$store.getters['menu/getMenu']
                 this.category = this.menu[this.id].children
