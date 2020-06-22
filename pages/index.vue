@@ -189,7 +189,7 @@
     .preview__controller {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: flex-start;
+        justify-content: flex-end;
         position: absolute;
         top: 22vw;
         right: 3%;
@@ -282,10 +282,10 @@
             top: 45vw;
             display: flex;
             flex-flow: column nowrap;
-            align-items: flex-end;
         }
         .controller__item {
             margin: 0 0 2vw 0;
+            text-align: right;
         }
 
         .production {

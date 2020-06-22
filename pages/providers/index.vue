@@ -2,7 +2,7 @@
     <div @wheel="sliderObserver">
         <Header/>
         <div class="wrapper">
-            <section class="providers">
+            <section class="providers wrapper">
                 <div class="providers__wrapper">
                     <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
                     <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
@@ -13,8 +13,8 @@
                     </Slide>
                 </Hooper>
                 <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
+                <Footer/>
             </section>
-            <Footer/>
         </div>
     </div>
 </template>
