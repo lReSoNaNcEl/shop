@@ -28,7 +28,7 @@ export default {
         desc: String,
         price: Number,
         volume: Number,
-        link: String
+        link: String,
     },
     data: () => ({
         renderInfo: true,

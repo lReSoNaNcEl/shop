@@ -1,5 +1,5 @@
 <template>
-    <Category :id="+$route.params.id - 1"/>
+    <Category/>
 </template>
 
 <script>

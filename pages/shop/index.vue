@@ -25,7 +25,7 @@
                     </nuxt-link>
                     <div class="products__container">
 <!--                        <Product v-for="product in products" :_id="product._id" :title="product.title" :img="product.img" :desc="product.desc" :price="product.price" :volume="product.volume"/>-->
-                        <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id - 1}/`" :img="'/img/product/1.png'"/>
+                        <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id}`" :img="'/img/product/1.png'"/>
                 </div>
                 </div>
 <!--            </div>-->
