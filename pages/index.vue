@@ -3,8 +3,8 @@
         <Header/>
         <div class="wrapper">
             <div class="preview">
-                <h1 ref="title" class="preview__title title">{{production[currentPage - 1].name}}</h1>
-                <p ref="desc" class="preview__desc">{{production[currentPage - 1].desc}}</p>
+                <h1 ref="title" class="preview__title title">{{slider[currentPage - 1].title}}</h1>
+                <p ref="desc" class="preview__desc">{{slider[currentPage - 1].text}}</p>
                 <div class="preview__wrapper">
                     <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
                     <p class="preview__amount">525 товаров</p>
@@ -16,16 +16,16 @@
             </div>
 
             <div class="preview__controller">
-                <div @click="switchPages" v-for="item in production" :data-id="item.id" class="controller__item">{{item.name}} —</div>
+                <div @click="switchPages" v-for="item in slider" :data-id="item.id" class="controller__item">{{item.name}} —</div>
             </div>
 
-            <img ref="photo" class="photo" :src="production[currentPage - 1].photos[currentSlide - 1].path"/>
+            <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
 
             <div ref="production" class="production">
                 <h2 class="production__title">Наши работы</h2>
                 <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
-                    <Slide v-for="(photo, i) in production[currentPage - 1].photos" >
-                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                    <Slide v-for="(image, i) in slider[currentPage - 1].images" >
+                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="image.image" :data-id="image.id "/>
                     </Slide>
                 </Hooper>
             </div>
@@ -44,7 +44,16 @@
      data: () => ({
          currentSlide: 1,
          currentPage: 1,
-         production: [],
+         slider: [{
+             id: 1,
+             title: 'Кровля',
+             text: 'Кро́вля — верхний элемент покрытия здания, подвергающийся атмосферным воздействиям. Главной её функцией является защита внутренних помещений от атмосферных осадков и воздействий. Главными требованиями к кровле являются лёгкость, долговечность, экономичность в изготовлении и эксплуатации.',
+             images: [
+                 {id: 1, path: '/img/preview/slide_1/1.png'},
+                 {id: 2, path: '/img/preview/slide_1/2.png'},
+                 {id: 3, path: '/img/preview/slide_1/3.png'},
+             ]
+         }],
          switchSlides: null,
          delay: false,
          delayTime: 1500,
@@ -116,7 +125,7 @@
 
              if (this.delay !== true) {
                  if (e.deltaY > 0) {
-                     if (this.currentPage < this.production.length) {
+                     if (this.currentPage < this.slider.length) {
                          this.delay = true
                          this.currentPage++
                          this.setAnimation(elements)
@@ -138,13 +147,16 @@
          sliderScroll(e) {
              this.currentSlide = +this.$refs.carousel.currentSlide + 1
 
-             if (this.currentSlide > this.production[this.currentPage - 1].photos.length || this.currentSlide < 1)
+             if (this.currentSlide > this.slider[this.currentPage - 1].images.length || this.currentSlide < 1)
                  this.currentSlide = 1
 
          }
      },
      created() {
-         this.production = this.$store.getters['production/getProduction']
+         this.$store.dispatch('slider/saveSlider').then(() => {
+             this.slider = this.$store.getters['slider/getSlider']
+             console.log(this.slider)
+         })
      },
      mounted() {
          this.switchSlides = setInterval(this.sliderScroll, 10)

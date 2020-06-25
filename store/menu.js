@@ -1,7 +1,6 @@
 export const state = () => ({
     menu: null,
     menuItem: null,
-    currentMenuId: null
 })
 
 export const actions = {
@@ -20,11 +19,9 @@ export const actions = {
 export const mutations = {
     setMenu: (state, payload) => state.menu = payload,
     setMenuItem: (state, payload) => state.menuItem = payload,
-    setCurrentMenuId: (state, payload) => state.currentMenuId = payload,
 }
 
 export const getters = {
     getMenu: state => state.menu,
     getMenuItem: state => state.menuItem,
-    getCurrentMenuId: state => state.currentMenuId,
 }

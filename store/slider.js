@@ -1,5 +1,5 @@
 export const state = () => ({
-    production: [
+    slider: [
         {
             id: 1,
             name: 'Кровля',
@@ -33,6 +33,18 @@ export const state = () => ({
     ]
 })
 
+export const actions = {
+    saveSlider: async ctx => {
+        const data = await fetch('https://backsteelhouse.ru/index-pages/')
+        const slider = await data.json()
+        ctx.commit('setSlider', await slider.results)
+    }
+}
+
+export const mutations = {
+    setSlider: (state, payload) => state.slider = payload
+}
+
 export const getters = {
-    getProduction: state => state.production
+    getSlider: state => state.slider
 }
