@@ -7,9 +7,10 @@
                 <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
             </div>
 
+            <div class="photo__layout"></div>
             <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
 
-            <div ref="production" class="production">
+            <div ref="production" class="production production__margin-top">
                 <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
                     <Slide v-for="(photo, i) in providers[currentPage - 1].photos">
                         <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path"

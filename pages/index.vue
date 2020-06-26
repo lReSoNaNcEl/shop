@@ -18,6 +18,7 @@
                 <div @click="switchPages" v-for="item in slider" :data-id="item.id" class="controller__item">{{item.title}} —</div>
             </div>
 
+            <div class="photo__layout"></div>
             <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
 
             <div ref="production" class="production">
