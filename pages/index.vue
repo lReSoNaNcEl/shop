@@ -83,13 +83,18 @@
      methods: {
          switchPages(e) {
              const id = +e.currentTarget.getAttribute('data-id')
-             this.currentPage = id;
+             const items = document.getElementsByClassName('controller__item')
+             for (let item of items) {
+                 item.textContent = item.textContent.replace('——', '—')
+             }
+             e.currentTarget.textContent = e.currentTarget.textContent.replace('—', '——')
+             this.currentPage = id
          },
          updateCarousel(payload) {
-             this.myCarouselData = payload.currentSlide;
+             this.myCarouselData = payload.currentSlide
          },
          slideTo(num){
-             this.$refs.carousel.slideTo(num);
+             this.$refs.carousel.slideTo(num)
          },
          setAnimation(items) {
              for (let item of items) item.DOM.style.animation = `${item.duration}ms ${item.name}`
