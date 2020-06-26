@@ -29,6 +29,7 @@ export default {
         price: Number,
         volume: Number,
         link: String,
+        linkToItem: String
     },
     data: () => ({
         renderInfo: true,
@@ -42,7 +43,7 @@ export default {
             this.$refs.icon.src = '/img/close_static.svg'
         },
         removeProductfromBasket(e) {
-            const id = +e.target.getAttribute('data-_id')
+            const id = +e.target.getAttribute('data-id')
             this.$store.commit('basket/deleteProduct', id)
             this.$store.commit('basket/syncBasket')
             new Noty({
@@ -54,8 +55,14 @@ export default {
             }).show()
         },
         addProductToBasket(e) {
-            const id = +e.target.getAttribute('data-_id')
-            const product = this.products.find(product => product.id === id)
+            const id = +e.target.getAttribute('data-id')
+            const product = {
+                id: this.id,
+                title: this.title,
+                desc: this.desc,
+                price: this.price
+            }
+            // const product = this.products.find(product => product.id === id)
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')
             new Noty({
@@ -78,14 +85,30 @@ export default {
             this.showCloseIcon = false
         }
 
-        if (location.pathname === '/shop/' ||
-            location.pathname === '/shop' ||
-            /\/category/i.test(location.pathname)
-        ) {
+        if (!/\/shop\/category\/\d+\/products\//.test(location.pathname)) {
             this.renderInfo = false
             this.showCloseIcon = true
             setTimeout(() => this.$refs.icon.style.display = 'none', 100)
         }
+
+
+        if (location.pathname === '/shop/basket') {
+            this.renderInfo = true
+            setTimeout(() => this.$refs.icon.style.display = 'block', 100)
+        }
+        // else {
+        //     setTimeout(() => this.$refs.icon.style.display = 'block', 100)
+        // }
+
+        // if (location.pathname === '/shop/' ||
+        //     location.pathname === '/shop' ||
+        //     /\/category/i.test(location.pathname)
+        // ) {
+        //
+        // }
+        // else if (/\/shop\/category\/\d+\/products\//.test('/category/1/products/')) {
+        //
+        // }
     }
 }
 </script>

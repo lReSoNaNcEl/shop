@@ -33,6 +33,20 @@ export const state = () => ({
     ],
 })
 
+export const actions = {
+    saveProviders: async ctx => {
+        const data = await fetch('https://backsteelhouse.ru/other-pages/')
+        const providers = await data.json()
+        ctx.commit('setProviders', await providers)
+    }
+}
+
+export const mutations = {
+    setProviders: (state, payload) => state.providers = payload
+}
+
 export const getters = {
     getProviders: state => state.providers
+
+
 }

@@ -71,7 +71,7 @@ input {
     right: 0;
     background-size: 100% 100%;
     clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-    filter: grayscale(80%);
+    filter: grayscale(90%);
 }
 
 .hooper {
@@ -93,6 +93,7 @@ input {
         top: 10.7421875vw;
         z-index: 0;
         border-radius: 1.46484375vw;
+        filter: grayscale(0%);
     }
 
     .title {
@@ -211,7 +212,7 @@ input {
 /*    font-size: .83vw;*/
 /*    margin: 0 0 0 .625vw;*/
 /*}*/
-.catalog__products {}
+.catalog__products {min-height: 40vw;}
 .products__basket {
     display: flex;
     justify-content: flex-end;

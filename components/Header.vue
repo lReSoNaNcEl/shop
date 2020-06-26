@@ -43,7 +43,7 @@ export default {
     mounted() {
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
-        if (location.pathname === '/shop' || location.pathname === '/shop/basket') {
+        if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname)) {
             for (let link of links) link.style.color = 'black'
             this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
         }

@@ -126,9 +126,11 @@ export default {
     computed: {
             providers() {return this.$store.getters['provider/getProviders']}
     },
-    // created() {
-    //     this.providers = this.$store.getters['production/getProduction']
-    // },
+    created() {
+        // this.$store.dispatch('provider/saveProviders').then(() => {
+        //     console.log(this.$store.getters['provider/getProviders'])
+        // })
+    },
     mounted() {
         this.switchSlides = setInterval(this.sliderScroll, 10)
     },

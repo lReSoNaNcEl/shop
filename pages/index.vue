@@ -4,7 +4,7 @@
         <div class="wrapper">
             <div class="preview">
                 <h1 ref="title" class="preview__title title">{{slider[currentPage - 1].title}}</h1>
-                <p ref="desc" class="preview__desc">{{slider[currentPage - 1].text}}</p>
+                <p ref="desc" v-html="slider[currentPage - 1].text" class="preview__desc"></p>
                 <div class="preview__wrapper">
                     <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
                 </div>

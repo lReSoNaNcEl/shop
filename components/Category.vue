@@ -34,9 +34,14 @@
             this.id = +this.$route.params.id
             this.$store.dispatch('menu/saveMenuItem', this.id).then(() => {
                 this.menu = this.$store.getters['menu/getMenuItem']
-                this.category = this.menu.children
-                this.title = this.menu.title
-                console.log(this.menu)
+                if (this.menu.products.length === 0) {
+                    this.category = this.menu.children
+                    this.title = this.menu.title
+                }
+                else {
+                    this.$router.replace(`/shop/category/${this.id}/products/`)
+                }
+                console.log(typeof this.menu.products)
             })
         },
         methods: {
