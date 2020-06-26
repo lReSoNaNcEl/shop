@@ -33,7 +33,6 @@
                 this.menu = this.$store.getters['menu/getMenuItem']
                 this.products = this.menu.products
                 this.title = this.menu.title
-                console.log(this.menu.products)
             })
         },
         components: {Header, Footer, Product}

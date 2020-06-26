@@ -2,19 +2,22 @@
     <div @wheel="sliderObserver">
         <Header/>
         <div class="wrapper">
-            <section class="providers wrapper">
-                <div class="providers__wrapper">
-                    <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
-                    <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
-                </div>
+            <div class="preview">
+                <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
+                <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
+            </div>
+
+            <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
+
+            <div ref="production" class="production">
                 <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
                     <Slide v-for="(photo, i) in providers[currentPage - 1].photos">
-                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
+                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path"
+                             :data-id="photo.id "/>
                     </Slide>
                 </Hooper>
-                <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
-                <Footer/>
-            </section>
+            </div>
+            <Footer/>
         </div>
     </div>
 </template>
@@ -140,78 +143,3 @@ export default {
     components: {Header, Footer, Hooper, Slide}
 }
 </script>
-
-<style scoped>
-    .providers {
-        padding: 0 0 0 3%;
-    }
-
-    .providers__wrapper {
-        display: flex;
-        flex-flow: column wrap;
-        width: 32%;
-    }
-
-    .slider {
-        width: 50%;
-        overflow-x: hidden;
-    }
-
-    .slider__item {
-        width: 15.625vw;
-        height: 7.2916vw;
-        cursor: pointer;
-        margin: 0 1.875vw 0 0;
-        border-radius: .52083vw;
-    }
-
-    @media only screen and (max-width: 1024px) {
-        .providers__wrapper {
-            color: white;
-            position: relative;
-            z-index: 1;
-            margin: 0 0 32vw 0;
-        }
-
-        .slider {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            overflow-x: hidden;
-            margin: 0 0 3vw 0;
-        }
-
-        .hooper {
-            height: 13.671875vw !important;
-        }
-
-        .slider__item {
-            width: 29.296875vw;
-            cursor: pointer;
-            margin: 0 1.875vw 0 0;
-            border-radius: .52083vw;
-            height: 13.671875vw !important;
-        }
-
-        @media only screen and (max-width: 480px) {
-            .slider {
-                margin: 82vw 0 0 0;
-            }
-
-            .providers {
-                height: initial;
-                width: 100%;
-                padding: 0 3%;
-            }
-            .providers__desc {
-                height: initial;
-                font-size: 4.6vw;
-            }
-
-            .providers__wrapper {
-                width: 100%;
-                margin: 5vw 0 0 0;
-            }
-        }
-    }
-</style>
