@@ -7,7 +7,6 @@
                 <p ref="desc" class="preview__desc">{{slider[currentPage - 1].text}}</p>
                 <div class="preview__wrapper">
                     <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
-                    <p class="preview__amount">525 товаров</p>
                 </div>
                 <div class="preview__hint">
                     <p class="hint__text">Крутите колёсико</p>
@@ -16,7 +15,7 @@
             </div>
 
             <div class="preview__controller">
-                <div @click="switchPages" v-for="item in slider" :data-id="item.id" class="controller__item">{{item.name}} —</div>
+                <div @click="switchPages" v-for="item in slider" :data-id="item.id" class="controller__item">{{item.title}} —</div>
             </div>
 
             <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
@@ -82,7 +81,7 @@
      },
      methods: {
          switchPages(e) {
-             const id = +e.currentTarget.getAttribute('data-_id')
+             const id = +e.currentTarget.getAttribute('data-id')
              this.currentPage = id;
          },
          updateCarousel(payload) {
@@ -192,18 +191,12 @@
         align-items: center;
     }
 
-    .preview__amount {
-        font-size: .72916vw;
-        font-weight: 500;
-        margin: 0 0 0 .833vw;
-    }
-
     .preview__controller {
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-end;
         position: absolute;
-        top: 22vw;
+        top: 40%;
         right: 3%;
         z-index: 3;
         font-size: .9vw;
@@ -284,12 +277,6 @@
             padding: 1.3671875vw 4.1015625vw;
         }
 
-        .preview__amount {
-            font-size: 1.171875vw;
-            font-weight: 400;
-            margin: 0 0 0 1.46484375vw;
-        }
-
         .preview__controller {
             font-size: 1.6vw;
             top: 45vw;
@@ -354,11 +341,6 @@
                 font-size: 4.6vw;
                 padding: 1.5vw 6vw;
                 border-radius: 5px;
-            }
-
-            .preview__amount {
-                font-size: 3.8vw;
-                margin: 0 0 0 5vw;
             }
         }
     }
