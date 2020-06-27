@@ -8,7 +8,7 @@
                         <img class="basket__img" src="/img/basket.svg"/>
                     </nuxt-link>
                     <div class="products__container">
-                        <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id}`" :img="'/img/product/1.png'"/>
+                        <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id}`" :img="item.image !== null ? item.image : '/img/product/1.png'"/>
                      </div>
                 </div>
         </section>
@@ -28,6 +28,7 @@ export default {
         products() {return this.$store.getters['product/getProducts']},
     },
     created() {this.$store.dispatch('menu/saveMenu').then(() => this.menu = this.$store.getters['menu/getMenu']); setTimeout(() => console.log(this.menu), 1000)},
-    components: {Header, Footer, Product}
+    components: {Header, Footer, Product},
+    layout: 'preloader'
 }
 </script>

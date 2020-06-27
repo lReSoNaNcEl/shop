@@ -4,13 +4,17 @@
         <div class="wrapper">
             <div class="preview">
                 <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
-                <p ref="desc" class="providers__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
+                <p ref="desc" class="preview__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
+                <div class="preview__wrapper">
+                    <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
+                </div>
             </div>
 
             <div class="photo__layout"></div>
             <img ref="photo" class="photo" :src="providers[currentPage - 1].photos[currentSlide - 1].path"/>
 
-            <div ref="production" class="production production__margin-top">
+            <div ref="production" class="production">
+                <h2 class="production__title">Галерея</h2>
                 <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
                     <Slide v-for="(photo, i) in providers[currentPage - 1].photos">
                         <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>

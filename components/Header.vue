@@ -41,6 +41,8 @@ export default {
         renderMenu: false
     }),
     mounted() {
+        document.body.style.overflow = 'visible'
+
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
         if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname) || /\/shop\/product\/\d+/.test(location.pathname)) {
@@ -51,10 +53,7 @@ export default {
     methods: {
         showNavMenu() {
             this.renderMenu = !this.renderMenu
-            if (this.renderMenu)
-                document.body.style.overflow = 'hidden'
-            else
-                document.body.style.overflow = 'visible'
+            this.renderMenu ? document.body.style.overflow = 'hidden' :  document.body.style.overflow = 'visible'
         }
     }
 }

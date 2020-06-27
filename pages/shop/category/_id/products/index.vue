@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader/>
         <Header/>
         <section class="catalog">
             <h1 class="catalog__title title">{{title}}</h1>
@@ -17,24 +18,25 @@
 </template>
 
 <script>
-    import Header from '@/components/Header'
-    import Footer from '@/components/Footer'
-    import Product from '@/components/Product'
-    export default {
-        data: () => ({
-            menu: null,
-            title: null,
-            products: null,
-            id: null,
-        }),
-        created() {
-            this.id = +this.$route.params.id
-            this.$store.dispatch('menu/saveMenuItem', this.id).then(() => {
-                this.menu = this.$store.getters['menu/getMenuItem']
-                this.products = this.menu.products
-                this.title = this.menu.title
-            })
-        },
-        components: {Header, Footer, Product}
-    }
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Product from '@/components/Product'
+import Preloader from '@/components/Preloader'
+export default {
+    data: () => ({
+        menu: null,
+        title: null,
+        products: null,
+        id: null,
+    }),
+    created() {
+        this.id = +this.$route.params.id
+        this.$store.dispatch('menu/saveMenuItem', this.id).then(() => {
+            this.menu = this.$store.getters['menu/getMenuItem']
+            this.products = this.menu.products
+            this.title = this.menu.title
+        })
+    },
+    components: {Header, Footer, Product, Preloader},
+}
 </script>

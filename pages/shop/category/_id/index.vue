@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader/>
         <Header/>
         <section class="catalog">
             <h1 class="catalog__title title">{{title}}</h1>
@@ -22,6 +23,7 @@
     import Header from '@/components/Header'
     import Footer from '@/components/Footer'
     import Product from '@/components/Product'
+    import Preloader from '@/components/Preloader'
     export default {
         data: () => ({
             menu: null,
@@ -34,13 +36,17 @@
             this.id = +this.$route.params.id
             this.$store.dispatch('menu/saveMenuItem', this.id).then(() => {
                 this.menu = this.$store.getters['menu/getMenuItem']
+
+                if (this.menu.children.length === 0) {
+                    const container = document.getElementsByClassName('products__container')[0]
+                    container.textContent = 'Товары в данной категории будут добавлены в ближайшее время'
+                }
+
                 if (this.menu.products.length === 0) {
                     this.category = this.menu.children
                     this.title = this.menu.title
                 }
-                else {
-                    this.$router.replace(`/shop/category/${this.id}/products/`)
-                }
+                else {this.$router.replace(`/shop/category/${this.id}/products/`)}
             })
         },
         methods: {
@@ -55,6 +61,6 @@
                 })
             }
         },
-        components: {Header, Footer, Product}
+        components: {Header, Footer, Product, Preloader},
     }
 </script>

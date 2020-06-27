@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader/>
         <Header/>
         <section v-show="isRender" class="productfull">
             <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
@@ -22,6 +23,7 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Preloader from '@/components/Preloader'
 export default {
     data: () => ({
         isRender: true,
@@ -35,7 +37,7 @@ export default {
             this.product === null ? this.isRender = false : null
         })
     },
-    components: {Header, Footer}
+    components: {Header, Footer, Preloader},
 }
 </script>
 

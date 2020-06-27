@@ -31,4 +31,8 @@
             margin: 13.4375vw 0 2.34375vw 0;
         }
     }
+
+    @media only screen and (max-width: 480px) {
+        .footer {font-size: 3.6vw;}
+    }
 </style>
