@@ -13,8 +13,7 @@
             <div ref="production" class="production production__margin-top">
                 <Hooper @slide="updateCarousel" ref="carousel" :settings="sliderConfig" class="slider">
                     <Slide v-for="(photo, i) in providers[currentPage - 1].photos">
-                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path"
-                             :data-id="photo.id "/>
+                        <img @click="slideTo(i)" @mousemove="sliderScroll" class="slider__item" :src="photo.path" :data-id="photo.id "/>
                     </Slide>
                 </Hooper>
             </div>

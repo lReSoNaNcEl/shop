@@ -84,9 +84,8 @@
          switchPages(e) {
              const id = +e.currentTarget.getAttribute('data-id')
              const items = document.getElementsByClassName('controller__item')
-             for (let item of items) {
+             for (let item of items)
                  item.textContent = item.textContent.replace('——', '—')
-             }
              e.currentTarget.textContent = e.currentTarget.textContent.replace('—', '——')
              this.currentPage = id
          },
@@ -147,6 +146,15 @@
                          setTimeout(() => this.delay = false, this.delayTime)
                      }
                  }
+
+                 const items = document.getElementsByClassName('controller__item')
+                 for (let item of items) {
+                     item.textContent = item.textContent.replace('——', '—')
+                     const id = +item.getAttribute('data-id')
+                     if (this.currentPage === id)
+                        item.textContent = item.textContent.replace('—', '——')
+                 }
+
              }
          },
          sliderScroll(e) {
@@ -163,6 +171,8 @@
          })
      },
      mounted() {
+         const activeControllerItem = document.getElementsByClassName('controller__item')[0]
+         activeControllerItem.textContent = activeControllerItem.textContent.replace('—', '——')
          this.switchSlides = setInterval(this.sliderScroll, 10)
      },
      destroyed() {

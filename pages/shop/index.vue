@@ -27,7 +27,7 @@ export default {
     computed: {
         products() {return this.$store.getters['product/getProducts']},
     },
-    created() {this.$store.dispatch('menu/saveMenu').then(() => this.menu = this.$store.getters['menu/getMenu'])},
+    created() {this.$store.dispatch('menu/saveMenu').then(() => this.menu = this.$store.getters['menu/getMenu']); setTimeout(() => console.log(this.menu), 1000)},
     components: {Header, Footer, Product}
 }
 </script>

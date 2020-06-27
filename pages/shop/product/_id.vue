@@ -2,19 +2,19 @@
     <div>
         <Header/>
         <section v-show="isRender" class="productfull">
-            <h1 class="productfull__title title">{{product.title}}</h1>
-            <p v-html="product.desc" class="productfull__desc"></p>
+            <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
+            <p v-html="product !== null ? product.desc : ''" class="productfull__desc"></p>
             <div class="productfull__properties">
                 Ширина листа : 1 175 мм<br>
                 Монтажная ширина : 1 080 мм<br>
                 Толщина листа : 0,35 - 0,5 мм
             </div>
             <p class="productfull__advantage">Каскад обладает замечательной эстетикой, большим запасом прочности и может устанавливаться на любую кровлю.</p>
-            <p class="productfull__price">Цена: <span class="highlight">{{product.price}}</span> руб./кв.м</p>
-            <img :src="product.image" class="productfull__img"/>
+            <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : ''}}</span> руб./кв.м</p>
+            <img :src="product !== null ? product.image : '/img/product/1.png'" class="productfull__img"/>
         </section>
 
-        <div v-show="!isRender" :style="{margin: '3vw 0 0 3%', fontSize: '2vw', minHeight: '35vw'}">Запрашиваемый товар не найден</div>
+        <div v-show="!isRender" class="productfull__warning">По Вашему запросу ничего не найдено</div>
         <Footer/>
     </div>
 </template>
@@ -26,19 +26,13 @@ export default {
     data: () => ({
         isRender: true,
         id: null,
-        product: {
-            title: 'Test',
-            desc: 'Test',
-            price: '300',
-            image: '/img/product/1.png',
-        }
+        product: null
     }),
     created() {
         this.id = +this.$route.params.id
         this.$store.dispatch('product/saveProduct', this.id).then(() => {
             this.product = this.$store.getters['product/getProduct']
-            if ('title' in this.product) {}
-            else this.isRender = false
+            this.product === null ? this.isRender = false : null
         })
     },
     components: {Header, Footer}
@@ -74,5 +68,11 @@ export default {
 
     .productfull__price {
         font-size: 1.14583vw;
+    }
+
+    .productfull__warning {
+        margin: 3vw 0 0 3%;
+        font-size: 2vw;
+        min-height: 35vw;
     }
 </style>
