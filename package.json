@@ -1,21 +1,21 @@
 {
-  "name": "shop",
-  "version": "1.0.0",
-  "description": "My dandy Nuxt.js project",
-  "author": "Ivan",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "animate.css": "^4.1.0",
-    "hooper": "^0.3.4",
-    "noty": "^3.2.0-beta",
-    "nuxt": "^2.0.0",
-    "vue-notice": "^0.2.3"
-  },
-  "devDependencies": {}
+    "name": "shop",
+    "version": "1.0.0",
+    "description": "Steel house - магазин кровельных и фасадных систем. Огромный ассортимент продукции, качественная консультация, помощь в монтаже.",
+    "author": "Ivan",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "animate.css": "^4.1.0",
+        "hooper": "^0.3.4",
+        "noty": "^3.2.0-beta",
+        "nuxt": "^2.0.0",
+        "vue-notice": "^0.2.3"
+    },
+    "devDependencies": {}
 }
