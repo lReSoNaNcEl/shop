@@ -78,12 +78,7 @@ export default {
         products() {return this.$store.getters['product/getProducts']}
     },
     mounted() {
-        if (location.pathname === '/shop/basket') {
-            this.showCloseIcon = true
-        }
-        else {
-            this.showCloseIcon = false
-        }
+        location.pathname === '/shop/basket' ? this.showCloseIcon = true : this.showCloseIcon = false
 
         if (!/\/shop\/category\/\d+\/products\//.test(location.pathname)) {
             this.renderInfo = false

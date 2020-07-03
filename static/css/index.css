@@ -354,7 +354,6 @@ input {
     width: 23%;
     margin: 0 2% 2.083vw 0;
 }
-.product__img {width: 100%;}
 .product__title {
     font-size: 1.14583vw;
     text-transform: uppercase;
@@ -381,10 +380,12 @@ input {
     cursor: pointer;
 }
 .product__img {
+    width: 100%;
     background-size: cover;
     height: 15vw;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 1vw;
 }
 .product__icon {
     width: .83vw;
@@ -513,13 +514,14 @@ input {
         margin: 0 0 1.5vw 0;
     }
     .payment__wrapper {
-        flex-direction: column-reverse;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
         margin: 5vw 0 0 0;
     }
     .payment__btn {
         font-size: 4vw;
         padding: 2vw 5vw;
+        margin: 0 0 3vw 0;
     }
     .payment__info {
         font-size: 3vw;
@@ -577,7 +579,6 @@ input {
         margin: 0 0 0 3vw;
     }
     .product__img {
-        border-radius: 1vw;
         height: 60vw;
     }
 }

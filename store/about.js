@@ -3,7 +3,7 @@ export const state = () => ({
 })
 
 export const actions = {
-    saveAbout: async ctx => {
+    async saveAbout(ctx) {
         const data = await fetch('https://backsteelhouse.ru/other-pages/')
         const about = await data.json()
         ctx.commit('setAbout', await about.results[0])

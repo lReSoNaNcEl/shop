@@ -10,11 +10,7 @@ export default {
        isRender: true
     }),
     mounted() {
-        document.body.style.overflow = 'hidden'
-        setTimeout(() => {
-            document.body.style.overflow = 'visible'
-            this.isRender = false
-        }, 500)
+        setTimeout(() => this.isRender = false, 500)
     }
 }
 </script>
@@ -23,7 +19,7 @@ export default {
     .preloader {
         width: 100%;
         height: 100vh;
-        position: absolute;
+        position: fixed;
         z-index: 9999;
         background-color: white;
     }

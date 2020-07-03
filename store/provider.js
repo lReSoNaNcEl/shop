@@ -34,7 +34,7 @@ export const state = () => ({
 })
 
 export const actions = {
-    saveProviders: async ctx => {
+    async saveProviders(ctx) {
         const data = await fetch('https://backsteelhouse.ru/other-pages/')
         const providers = await data.json()
         ctx.commit('setProviders', await providers)

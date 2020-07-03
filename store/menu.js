@@ -4,12 +4,12 @@ export const state = () => ({
 })
 
 export const actions = {
-    saveMenu: async (ctx) => {
+    async saveMenu(ctx) {
         const data = await fetch('https://backsteelhouse.ru/menu/')
         const menu = await data.json()
         ctx.commit('setMenu', await menu.results)
     },
-    saveMenuItem: async (ctx, id) => {
+    async saveMenuItem(ctx, id) {
         const data = await fetch(`https://backsteelhouse.ru/menu/${id}/`)
         const menuItem = await data.json()
         ctx.commit('setMenuItem', await menuItem)

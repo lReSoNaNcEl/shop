@@ -3,7 +3,7 @@ export const state = () => ({
 })
 
 export const actions = {
-    saveProduct: async (ctx, id) => {
+    async saveProduct(ctx, id) {
         const data = await fetch(`https://backsteelhouse.ru/product/${id}/`)
         const product = await data.json()
         data.status === 404 ? ctx.commit('setProduct', null) : ctx.commit('setProduct', await product)
