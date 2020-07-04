@@ -15,7 +15,7 @@
                 </nuxt-link>
                 <div class="products__container">
                     <div @click="loadChildData" :data-id="item.id" class="product" v-for="item in category">
-                        <Product :id="item.id" :title="item.title" :img="item.image !== null ? item.image : '/img/product/1.png'"/>
+                        <Product  :id="item.id" :title="item.title" :img="item.image !== null ? item.image : '/img/product/1.png'"/>
                     </div>
                 </div>
             </div>

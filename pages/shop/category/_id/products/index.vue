@@ -9,7 +9,8 @@
                     <img class="basket__img" src="/img/basket.svg"/>
                 </nuxt-link>
                 <div class="products__container">
-                    <Product v-for="item in products" :id="item.id" :title="item.title" :price="item.price" :desc="item.pre_view" :linkToItem="`/shop/product/${item.id}/`" :img="'/img/product/1.png'"/>
+                    <!--                :link="`/shop/product/${item.id}`"-->
+                    <Product v-for="item in products" :linkOnImg="`/shop/product/${item.id}`" :id="item.id" :title="item.title" :price="item.price" :desc="item.pre_view" :linkToItem="`/shop/product/${item.id}/`" :img="'/img/product/1.png'"/>
                 </div>
             </div>
         </section>

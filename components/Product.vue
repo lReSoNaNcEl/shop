@@ -1,7 +1,9 @@
 import Noty from "noty";
 <template>
     <nuxt-link :to="link ? link : '#'" class="product" ref="product">
-        <img class="product__img" :src="img"/>
+        <nuxt-link :to="linkOnImg ? linkOnImg : link ? link : '#'">
+            <img class="product__img" :src="img"/>
+        </nuxt-link>
         <h3 class="product__title">{{title}}</h3>
         <p v-show="renderInfo" class="product__desc">{{desc}}</p>
         <div v-show="renderInfo" class="product__wrapper">
@@ -29,11 +31,12 @@ export default {
         price: Number,
         volume: Number,
         link: String,
-        linkToItem: String
+        linkToItem: String,
+        linkOnImg: String
     },
     data: () => ({
         renderInfo: true,
-        showCloseIcon: false
+        showCloseIcon: false,
     }),
     methods: {
         hoverCloseIcon() {
@@ -42,17 +45,15 @@ export default {
         focusLeaveCloseIcon() {
             this.$refs.icon.src = '/img/close_static.svg'
         },
+        alert(text, type, time = 1500) {
+            new Noty({type: type, layout: 'topRight', theme: 'metroui', text: text, timeout: time,})
+                .show()
+        },
         removeProductfromBasket(e) {
             const id = +e.target.getAttribute('data-id')
             this.$store.commit('basket/deleteProduct', id)
             this.$store.commit('basket/syncBasket')
-            new Noty({
-                type: 'error',
-                layout: 'topRight',
-                theme: 'metroui',
-                text: 'Товар убран из корзины',
-                timeout: '1000',
-            }).show()
+            this.alert('Товар убран из корзины', 'error', 1000)
         },
         addProductToBasket(e) {
             const id = +e.target.getAttribute('data-id')
@@ -62,16 +63,10 @@ export default {
                 desc: this.desc,
                 price: this.price
             }
-            // const product = this.products.find(product => product.id === id)
+
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')
-            new Noty({
-                type: 'success',
-                layout: 'topRight',
-                theme: 'metroui',
-                text: 'Товар добавлен в корзину',
-                timeout: '1500',
-            }).show()
+            this.alert('Товар добавлен в корзину', 'success')
         }
     },
     computed: {
@@ -91,19 +86,7 @@ export default {
             this.renderInfo = true
             setTimeout(() => this.$refs.icon.style.display = 'block', 100)
         }
-        // else {
-        //     setTimeout(() => this.$refs.icon.style.display = 'block', 100)
-        // }
 
-        // if (location.pathname === '/shop/' ||
-        //     location.pathname === '/shop' ||
-        //     /\/category/i.test(location.pathname)
-        // ) {
-        //
-        // }
-        // else if (/\/shop\/category\/\d+\/products\//.test('/category/1/products/')) {
-        //
-        // }
     }
 }
 </script>
