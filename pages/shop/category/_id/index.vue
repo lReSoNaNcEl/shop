@@ -4,9 +4,10 @@
         <Header/>
         <section class="catalog">
             <h1 class="catalog__title title">
-                <nuxt-link v-for="link in links" :to="link.path">{{link.title}}</nuxt-link>
+<!--                <nuxt-link v-for="link in links" :to="link.path">{{link.title}}</nuxt-link>-->
 <!--                <nuxt-link v-if="links !== ''" :to="links[0].path ? links[0].path : ''">{{links[0].title}}</nuxt-link>-->
-                <nuxt-link :to="currentLink.path ? currentLink.path : ''">{{currentLink.title}}</nuxt-link>
+<!--                <nuxt-link :to="currentLink.path ? currentLink.path : ''">{{currentLink.title}}</nuxt-link>-->
+                {{title}}
             </h1>
             <div class="catalog__products">
                 <nuxt-link class="products__basket" to="/shop/basket">
@@ -56,22 +57,17 @@
                 if (this.menu.products.length === 0) {
                     this.category = this.menu.children
                     this.title = this.menu.title
-
-                    this.$store.commit('navigator/setCurrentLink', {
-                        title: this.title,
-                        path: this.$route.path
-                    })
-
-
-                    if (this.menu.parent === undefined)
-                        console.log('ураааа')
-
-                    console.log(this.menu)
-
-                    this.currentLink = this.$store.getters['navigator/getCurrentLink']
-                    this.links = this.$store.getters['navigator/getLinks']
                 }
-                else {this.$router.replace(`/shop/category/${this.id}/products/`)}
+                else {
+                    this.$router.replace(`/shop/category/${this.id}/products/`)
+                }
+                    // this.$store.commit('navigator/setCurrentLink', {
+                    //     title: this.title,
+                    //     path: this.$route.path
+                    // })
+                    // console.log(this.menu)
+                    // this.currentLink = this.$store.getters['navigator/getCurrentLink']
+                    // this.links = this.$store.getters['navigator/getLinks']               }
             })
         },
         methods: {
@@ -85,14 +81,11 @@
                     this.title = this.menu.title
                 })
 
-                this.$store.commit('navigator/clearLastLink')
-
-                this.$store.commit('navigator/addLink', {
-                    title: this.title,
-                    path: this.$route.path
-                })
-
-                // console.log(this.links)
+                // this.$store.commit('navigator/clearLastLink')
+                // this.$store.commit('navigator/addLink', {
+                //     title: this.title,
+                //     path: this.$route.path
+                // })
             }
         },
         components: {Header, Footer, Product, Preloader},

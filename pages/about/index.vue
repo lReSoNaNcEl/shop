@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Preloader/>
         <Header/>
         <section class="about wrapper">
             <div class="about__wrapper">
@@ -26,6 +27,7 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Preloader from '@/components/Preloader'
 export default {
     data: () => ({
         about: {}
@@ -33,17 +35,15 @@ export default {
     created() {
         this.$store.dispatch('about/saveAbout').then(() => {
             this.about = this.$store.getters['about/getAbout']
-            console.log(this.about)
         })
     },
-    components: {Header, Footer}
+    components: {Preloader, Header, Footer}
 }
 </script>
 <style scoped>
     .about {
         width: 32%;
         padding: 0 0 0 3%;
-        /*min-height: 36vw;*/
     }
 
     .about__contacts {

@@ -11,27 +11,27 @@
                     <h2 class="payment__title">Данные покупателя</h2>
 
                     <div class="payment__field">
-                        <label class="field__caption">Имя</label>
-                        <input class="field__input" type="text" placeholder="Иван" ref="name">
+                        <label ref="nameLabel" class="field__caption">Имя</label>
+                        <input class="field__input" @focusout="validateName($refs.name)" type="text" placeholder="Иван" ref="name">
                     </div>
 
                     <div class="payment__field">
-                        <label class="field__caption">Почта</label>
-                        <input class="field__input" type="text" placeholder="ivan@mail.ru" ref="email">
+                        <label ref="emailLabel" class="field__caption">Почта</label>
+                        <input class="field__input" @focusout="validateEmail($refs.email)" type="text" placeholder="ivan@mail.ru" ref="email">
                     </div>
 
                     <div class="payment__field">
-                        <label class="field__caption">Телефон</label>
-                        <input class="field__input" type="text" v-mask="'+7 (###) ###-##-##'" placeholder="+7 (900) 800-70-60" ref="phone">
+                        <label ref="phoneLabel" class="field__caption">Телефон</label>
+                        <input class="field__input" @focusout="validatePhone($refs.phone)" type="text" v-mask="'+7 (###) ###-##-##'" placeholder="+7 (900) 800-70-60" ref="phone">
                     </div>
 
                     <div class="payment__field">
-                        <label class="field__caption">Комментарий</label>
-                        <input class="field__input" type="text" placeholder="г.Липецк ул.Космонавтов д.1" ref="comment">
+                        <label ref="commentLabel" class="field__caption">Комментарий</label>
+                        <input class="field__input" @focusout="validateComment($refs.comment,)" type="text" placeholder="Комментарий" ref="comment">
                     </div>
 
                     <p class="payment__amount">Всего товаров: <span class="highlight">{{basket.length}}</span></p>
-                    <p class="payment__delivery">Стоимость доставки: <span class="highlight">500</span> р.</p>
+<!--                    <p class="payment__delivery">Стоимость доставки: <span class="highlight">500</span> р.</p>-->
                     <p class="payment__total">Всего к оплате: <span class="highlight">{{totalPrice}}</span> р.</p>
 
                     <div class="payment__wrapper">
@@ -56,7 +56,12 @@
     import 'noty/lib/noty.css'
     import 'noty/lib/themes/metroui.css'
     export default {
-        data: () => ({}),
+        data: () => ({
+            name: '',
+            phone: '',
+            email: '',
+            comment: ''
+        }),
         directives: {mask},
         computed: {
             products() {return this.$store.getters['product/getProducts']},
@@ -65,30 +70,83 @@
         },
         methods: {
             toMail() {
-                const name = this.$refs.name.value
-                const email = this.$refs.email.value
-                const phone = this.$refs.phone.value
-                const comment = this.$refs.comment.value
+                const name = this.$refs.name.value.trim()
+                const email = this.$refs.email.value.trim()
+                const phone = this.$refs.phone.value.trim()
+                const comment = this.$refs.comment.value.trim()
 
+                const nameDOM = this.$refs.name
+                const emailDOM = this.$refs.email
+                const phoneDOM = this.$refs.phone
+                const commentDOM = this.$refs.comment
 
-                if (name && email && phone && comment) {
+                if (this.validateName(nameDOM) &&
+                    this.validateEmail(emailDOM) &&
+                    this.validatePhone(phoneDOM) &&
+                    this.validateComment(commentDOM)
+                ) {
                     const products = this.basket.map(product => product.id)
                     const request = {name, email, phone, comment, products}
 
                     this.$store.dispatch('basket/saveMail', request).then(() => {
-                        new Noty({
-                            type: 'success',
-                            layout: 'topRight',
-                            theme: 'metroui',
-                            text: 'Заявка успешно отправлена',
-                            timeout: '1500',
-                        }).show()
+                        this.alert('Заявка успешно отправлена', 'success')
                         let res = this.$store.getters['basket/getMailResponse']
                         console.log(res)
                     })
                 }
+                else this.alert('Заполните заявку', 'warning', 1000)
 
-
+            },
+            alert(text, type, time = 1500) {
+                new Noty({type: type, layout: 'topRight', theme: 'metroui', text: text, timeout: time,})
+                    .show()
+            },
+            activeField(label, css, message = 'Поле обязательно для заполнения', color = 'red') {
+                label.textContent = message
+                css.boxShadow = css.boxShadow = `1px 1px 1px 1px ${color}`
+            },
+            validateName(DOM) {
+                const label = this.$refs.nameLabel
+                const css = DOM.style
+                if (DOM.value === '') this.activeField(label, css)
+                else {
+                    this.activeField(label, css, 'Имя', 'green')
+                    return true
+                }
+                return false
+            },
+            validateEmail(DOM) {
+                const label = this.$refs.emailLabel
+                const css = DOM.style
+                if (DOM.value === '')
+                    this.activeField(label, css)
+                else if (!/^([a-zA-z0-9])+([@])([a-z])+([.])([a-z]){2,5}$/.test(DOM.value))
+                    this.activeField(label, css, 'Некорректный адрес почты', 'red')
+                else {
+                    this.activeField(label, css, 'Почта', 'green')
+                    return true
+                }
+                return false
+            },
+            validatePhone(DOM) {
+                const label = this.$refs.phoneLabel
+                const css = DOM.style
+                if (DOM.value === '') this.activeField(label, css)
+                else {
+                    this.activeField(label, css, 'Телефон', 'green')
+                    return true
+                }
+                return false
+            },
+            validateComment(DOM) {
+                const label = this.$refs.commentLabel
+                const css = DOM.style
+                if (DOM.value === '') this.activeField(label, css)
+                else {
+                    this.activeField(label, css, 'Комментарий', 'green')
+                    return true
+                }
+                return false
             }
         },
         created() {

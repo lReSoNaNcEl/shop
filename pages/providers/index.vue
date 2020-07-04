@@ -1,5 +1,6 @@
 <template>
     <div @wheel="sliderObserver">
+        <Preloader/>
         <Header/>
         <div class="wrapper">
             <div class="preview">
@@ -31,6 +32,7 @@ import {Hooper, Slide} from 'hooper'
 import 'hooper/dist/hooper.css';
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Preloader from '@/components/Preloader'
 export default {
     data: () => ({
         currentSlide: 1,
@@ -144,6 +146,6 @@ export default {
     destroyed() {
         clearInterval(this.switchSlides)
     },
-    components: {Header, Footer, Hooper, Slide}
+    components: {Preloader, Header, Footer, Hooper, Slide}
 }
 </script>

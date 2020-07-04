@@ -8,14 +8,12 @@ export const state = () => ({
 export const actions = {
     async saveMail(ctx, params) {
         const data = await fetch('https://backsteelhouse.ru/create-order/', {
-            method: 'POST',
             headers: {'Content-type': 'application/json'},
+            method: 'POST',
             body: JSON.stringify(params)
         })
-
-        console.log(params)
-        console.log(JSON.stringify(params))
-        ctx.commit('setMailResponse', await data.json())
+        console.log(JSON.stringify(params, null, 2))
+        ctx.commit('setMailResponse', await data.text())
     }
 }
 
@@ -47,4 +45,3 @@ export const getters = {
     getTotalPrice: state => state.totalPrice,
     getMailResponse: state => state.mailResponse
 }
-
