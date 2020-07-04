@@ -5,13 +5,7 @@
         <section v-show="isRender" class="productfull">
             <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
             <p v-html="product !== null ? product.desc : ''" class="productfull__desc"></p>
-            <div class="productfull__properties">
-                Ширина листа : 1 175 мм<br>
-                Монтажная ширина : 1 080 мм<br>
-                Толщина листа : 0,35 - 0,5 мм
-            </div>
-            <p class="productfull__advantage">Каскад обладает замечательной эстетикой, большим запасом прочности и может устанавливаться на любую кровлю.</p>
-            <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : ''}}</span> руб./кв.м</p>
+            <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : '(подробнее о цене после оформления заказа)'}}</span> руб./кв.м</p>
             <img :src="product !== null ? product.image : '/img/product/1.png'" class="productfull__img"/>
         </section>
 
@@ -35,6 +29,7 @@ export default {
         this.$store.dispatch('product/saveProduct', this.id).then(() => {
             this.product = this.$store.getters['product/getProduct']
             this.product === null ? this.isRender = false : null
+            console.log(this.product)
         })
     },
     components: {Header, Footer, Preloader},
@@ -57,12 +52,10 @@ export default {
         right: 0;
         background-size: 100% 100%;
         clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-        filter: grayscale(90%);
+        filter: grayscale(20%);
     }
 
-    .productfull__desc,
-    .productfull__properties,
-    .productfull__advantage {
+    .productfull__desc {
         font-size: .9375vw;
         margin: 0 0 2.083vw 0;
         line-height: 180%;

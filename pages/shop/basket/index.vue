@@ -5,7 +5,7 @@
             <h1 class="basket__title title">Корзина</h1>
             <div class="basket__wrapper">
                 <div class="basket__products">
-                    <Product v-for="product in basket" :id="product.id" :title="product.title" :img="'/img/product/1.png'" :desc="product.desc" :price="product.price" :volume="product.volume"/>
+                    <Product v-for="product in basket" :link="`/shop/product/${product.id}`" :id="product.id" :title="product.title" :img="'/img/product/1.png'" :desc="product.desc" :price="product.price" :volume="product.volume"/>
                 </div>
                 <form class="basket__payment">
                     <h2 class="payment__title">Данные покупателя</h2>
@@ -56,12 +56,7 @@
     import 'noty/lib/noty.css'
     import 'noty/lib/themes/metroui.css'
     export default {
-        data: () => ({
-            name: '',
-            phone: '',
-            email: '',
-            comment: ''
-        }),
+        data: () => ({}),
         directives: {mask},
         computed: {
             products() {return this.$store.getters['product/getProducts']},
