@@ -35,7 +35,9 @@ export const mutations = {
         if (state.basket.length === 0)
             state.totalPrice = 0
         else
-            state.totalPrice = state.basket.map(product => product.price).reduce((acc, price) => acc + price)
+            state.totalPrice = state.basket
+                .map(product => product.price)
+                .reduce((acc, price) => acc + price)
     },
     setMailResponse: (state, payload) => state.mailResponse = payload
 }

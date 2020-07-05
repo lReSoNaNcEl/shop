@@ -57,12 +57,7 @@ export default {
         },
         addProductToBasket(e) {
             const id = +e.target.getAttribute('data-id')
-            const product = {
-                id: this.id,
-                title: this.title,
-                desc: this.desc,
-                price: this.price
-            }
+            const product = {id: this.id, title: this.title, desc: this.desc, price: this.price}
 
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')

@@ -22,6 +22,7 @@ export const mutations = {
     setMenu: (state, payload) => state.menu = payload,
     setMenuItem: (state, payload) => state.menuItem = payload,
     setNavigation: (state, payload) => state.navigation = payload,
+    addNavItem: (state, payload) => state.navigation.unshift(payload)
 }
 
 export const getters = {

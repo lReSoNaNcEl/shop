@@ -30,8 +30,6 @@ export default {
         products() {return this.$store.getters['product/getProducts']},
     },
     created() {
-        this.$store.commit('navigator/clearLinks')
-
         this.$store.dispatch('menu/saveMenu').then(() => {
             this.menu = this.$store.getters['menu/getMenu']
             console.log(this.menu)

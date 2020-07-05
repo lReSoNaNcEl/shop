@@ -5,34 +5,3 @@
         <p class="footer__address">г.Липецк ул.Космонавтов д.1</p>
     </footer>
 </template>
-
-<style scoped>
-    .footer {
-        position: relative;
-        height: 1.875vw;
-        display: flex;
-        align-items: center;
-        font-size: 1.0416vw;
-        padding: 0 0 0 3%;
-        z-index: 2;
-    }
-
-    .footer__barrier {
-        width: 1.875vw;
-        height: 1px;
-        background-color: #C9C9C9;
-        transform: rotate(90deg);
-    }
-
-    @media only screen and (max-width: 1024px) {
-        .footer {
-            position: static;
-            font-size: 1.5625vw;
-            margin: 13.4375vw 0 2.34375vw 0;
-        }
-    }
-
-    @media only screen and (max-width: 480px) {
-        .footer {font-size: 3.6vw;}
-    }
-</style>
