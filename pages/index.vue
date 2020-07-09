@@ -3,7 +3,9 @@
         <Preloader/>
         <Header/>
         <div class="wrapper">
+            <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
             <div class="preview">
+
                 <h1 ref="title" class="preview__title title">{{slider[currentPage - 1].title}}</h1>
                 <p ref="desc" v-html="slider[currentPage - 1].text" class="preview__desc"></p>
                 <div class="preview__wrapper">
@@ -20,7 +22,6 @@
             </div>
 
             <div class="photo__layout"></div>
-            <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
 
             <div ref="production" class="production">
                 <h2 class="production__title">Наши работы</h2>
@@ -170,6 +171,7 @@
      created() {
          this.$store.dispatch('slider/saveSlider').then(() => {
              this.slider = this.$store.getters['slider/getSlider']
+             console.log(this.slider)
          })
      },
      mounted() {

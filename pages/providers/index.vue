@@ -4,8 +4,8 @@
         <Header/>
         <div class="wrapper">
             <div class="preview">
-                <h1 ref="title" class="providers__title title">{{providers[currentPage - 1].name}}</h1>
-                <p ref="desc" class="preview__desc paragraph">Magna voluptate laborum id deserunt veniam esse dolore cupidatat do duis ex ex mollit mollit velit fugiat quis commodo eiusmod enim cupidatat incididunt consequat irure ea est pariatur non exercitation ex esse</p>
+                <h1 ref="title" class="providers__title title">{{data.title}}</h1>
+                <p ref="desc" v-html="data.text" class="preview__desc paragraph"></p>
                 <div class="preview__wrapper">
                     <nuxt-link to="/shop" class="preview__link btn">Каталог</nuxt-link>
                 </div>
@@ -48,7 +48,8 @@ export default {
             itemsToShow: 3,
             infiniteScroll: true,
             transition: 600
-        }
+        },
+        data: {}
     }),
     watch: {
         currentSlide: function () {
@@ -133,12 +134,13 @@ export default {
         }
     },
     computed: {
-            providers() {return this.$store.getters['provider/getProviders']}
+        providers() {return this.$store.getters['provider/getProviders']}
     },
     created() {
-        // this.$store.dispatch('provider/saveProviders').then(() => {
-        //     console.log(this.$store.getters['provider/getProviders'])
-        // })
+        this.$store.dispatch('provider/saveProviders').then(() => {
+            console.log(this.$store.getters['provider/getImages'])
+            this.data = this.$store.getters['provider/getImages']
+        })
     },
     mounted() {
         this.switchSlides = setInterval(this.sliderScroll, 10)

@@ -12,7 +12,7 @@
                 </nuxt-link>
                 <div class="products__container">
                     <!--                :link="`/shop/product/${item.id}`"-->
-                    <Product v-for="item in products" :linkOnImg="`/shop/product/${item.id}`" :id="item.id" :title="item.title" :price="item.price" :desc="item.pre_view" :linkToItem="`/shop/product/${item.id}/`" :img="'/img/product/1.png'"/>
+                    <Product v-for="product in products" :linkOnImg="`/shop/product/${product.id}`" :id="product.id" :title="product.title" :price="product.price" :desc="product.pre_view" :linkToItem="`/shop/product/${product.id}/`" :img="product !== null ? product.image : '/img/product/1.png'"/>
                 </div>
             </div>
         </section>

@@ -7,6 +7,7 @@ import Noty from "noty";
             <div class="productfull__wrapper">
                 <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
                 <p v-html="product !== null ? product.desc : ''" class="productfull__desc"></p>
+                <p v-html="product !== null ? product.specifications : ''" class="productfull__desc"></p>
                 <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : '(подробнее о цене после оформления заказа)'}}</span> руб./кв.м</p>
                 <div :data-id="id" @click="addProductToBasket" class="productfull__btn btn">Купить</div>
                 <Footer/>
