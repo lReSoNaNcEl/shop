@@ -31,7 +31,6 @@
                     </div>
 
                     <p class="payment__amount">Всего товаров: <span class="highlight">{{basket.length}}</span></p>
-<!--                    <p class="payment__delivery">Стоимость доставки: <span class="highlight">500</span> р.</p>-->
                     <p class="payment__total">Всего к оплате: <span class="highlight">{{totalPrice}}</span> р.</p>
 
                     <div class="payment__wrapper">

@@ -122,6 +122,9 @@ input {
         height: 156.25vw;
         top: 25vw;
     }
+    .photo_main {
+        position: static;
+    }
     .title {
         font-size: 9.375vw;
         margin: 12.6953125vw 0 0 0;
@@ -130,9 +133,7 @@ input {
         font-size: 4vw;
         margin: 4.1015625vw 0 0 0;
     }
-    .btn {
-        padding: 1vw 5vw;
-    }
+    .btn {padding: 1vw 5vw;}
 }
 
 @keyframes Hide {
@@ -211,7 +212,7 @@ input {
 }
 
 /*@@@ INDEX @@@*/
-.main {overflow-x: hidden;}
+.main {overflow: hidden;}
 .preview {
     width: 32%;
     padding: 0 0 0 3%;
@@ -332,18 +333,33 @@ input {
     }
 
     @media only screen and (max-width: 480px) {
-        .production {margin: 20vw 0 0 0;}
+        .mobile__slider {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+        .mobile__slider > .photo {order: 1; height: 73.2421875vw;}
+        .mobile__slider > .production {order: 2;}
+        .mobile__slider > .preview {order: 3;}
+        .mobile__slider > .footer {order: 4; padding: 0 5%;}
+        .mobile__slider > .hooper {height: 16vw !important;}
+        .production {
+            margin: 5vw 0 0 0;
+            padding: 0 5%;
+        }
         .production__title {font-size: 4.6vw;}
         .preview {
             height: initial;
             width: 100%;
-            padding: 0 3%;
+            padding: 0 5%;
+            color: black;
         }
-        .preview__controller {display: none;}
+        .preview__controller {
+            font-size: 4vw;
+            top: 55vw;
+        }
         .preview__hint {display: none;}
         .preview__desc {
             height: initial;
-            min-height: 100vw;
             font-size: 4.6vw;
         }
         .preview__wrapper {margin: 5vw 0 0 0;}

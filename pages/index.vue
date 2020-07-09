@@ -2,8 +2,8 @@
     <div class="main" @wheel="sliderObserver">
         <Preloader/>
         <Header/>
-        <div class="wrapper">
-            <img ref="photo" class="photo" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
+        <div class="wrapper mobile__slider">
+            <img ref="photo" class="photo photo_main" :src="slider[currentPage - 1].images[currentSlide - 1].image"/>
             <div class="preview">
 
                 <h1 ref="title" class="preview__title title">{{slider[currentPage - 1].title}}</h1>
