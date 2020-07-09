@@ -11,18 +11,14 @@ export const actions = {
     async saveProviders(ctx) {
         const data = await fetch('https://backsteelhouse.ru/other-pages/')
         const providers = await data.json()
-        ctx.commit('setImages', await providers.results[1])
+        ctx.commit('setProviders', await providers.results[1])
     }
 }
 
 export const mutations = {
     setProviders: (state, payload) => state.providers = payload,
-    setImages: (state, payload) => state.images = payload,
 }
 
 export const getters = {
     getProviders: state => state.providers,
-    getImages: state => state.images,
-
-
 }
