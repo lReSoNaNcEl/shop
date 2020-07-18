@@ -7,8 +7,8 @@ import Noty from "noty";
         <h3 class="product__title">{{title}}</h3>
         <p v-show="renderInfo" class="product__desc">{{desc}}</p>
         <div v-show="renderInfo" class="product__wrapper">
-            <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб./кв.м</div>
-            <div class="product__volume"> {{volume}} кв.м</div>
+            <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб.</div>
+<!--            <div class="product__volume"> {{volume}} кв.м</div>-->
         </div>
         <div v-show="!showCloseIcon" class="product__controls">
             <div :data-id="id" @click="addProductToBasket" class="product__btn btn">Купить</div>
