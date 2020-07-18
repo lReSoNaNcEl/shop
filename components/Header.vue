@@ -33,28 +33,23 @@
 export default {
     watch: {
         '$route.path': function () {
-            setTimeout(() => this.renderMenu = false, 150)
-            document.body.style.overflow = 'visible'
+            setTimeout(() => this.renderMenu = false, 100)
         }
     },
     data: () => ({
         renderMenu: false
     }),
     mounted() {
-        document.body.style.overflow = 'visible'
-
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
-        if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname) || /\/shop\/product\/\d+/.test(location.pathname)) {
+            // || /\/shop\/product\/\d+/.test(location.pathname)
+        if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname)) {
             for (let link of links) link.style.color = 'black'
             this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
         }
     },
     methods: {
-        showNavMenu() {
-            this.renderMenu = !this.renderMenu
-            this.renderMenu ? document.body.style.overflow = 'hidden' :  document.body.style.overflow = 'visible'
-        }
+        showNavMenu() {this.renderMenu = !this.renderMenu}
     }
 }
 </script>
@@ -128,12 +123,12 @@ export default {
             width: 80%;
             height: 100vh;
             display: block;
-            position: absolute;
+            position: fixed;
             z-index: 5;
             top: 0;
             left: 0;
             background-color: white;
-            padding: 2.34375vw 0 0 2vw;
+            padding: 5vw 0 0 5vw;
         }
 
         .navmenu__overlay {
@@ -158,7 +153,7 @@ export default {
         .links__item {
             text-decoration: none;
             color: #08284D;
-            font-size: 4.296875vw;
+            font-size: 5.6vw;
             margin: 0 0 7vw 0;
         }
 

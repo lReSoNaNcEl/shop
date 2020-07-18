@@ -45,9 +45,11 @@ input {
 }
 
 .btn:hover {
-    color: #B0B0B0;
-    transition: .5s ease all;
-    border: 1px solid #B0B0B0;
+    /*color: black;*/
+    transition: .8s ease all;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
 }
 
 .highlight {
@@ -133,7 +135,7 @@ input {
         font-size: 4vw;
         margin: 4.1015625vw 0 0 0;
     }
-    .btn {padding: 1vw 5vw;}
+    .btn {padding: 1.5vw 5vw;}
 }
 
 @keyframes Hide {
@@ -417,7 +419,7 @@ input {
     margin: 1.25vw 0 1.0416vw 0;
 }
 .product__desc {
-    height: 5vw;
+    min-height: 6vw;
     font-size: .83vw;
     line-height: 150%;
 }
@@ -452,7 +454,7 @@ input {
     cursor: pointer;
 }
 .productfull {
-    width: 32%;
+    width: 34%;
     padding: 0 0 0 3%;
 }
 .productfull__wrapper {
@@ -465,7 +467,7 @@ input {
     padding: 0;
 }
 .productfull__img {
-    position: absolute;
+    position: fixed;
     width: 59.375vw;
     height: 100vh;
     z-index: 2;
@@ -473,7 +475,6 @@ input {
     right: 0;
     background-size: 100% 100%;
     clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
-    filter: grayscale(20%);
 }
 .productfull__desc {
     font-size: .9375vw;
@@ -482,15 +483,16 @@ input {
 }
 .productfull__price {font-size: 1.14583vw;}
 .productfull__btn {
-    width: 20%;
+    width: max-content;
     text-align: center;
-    margin: 1vw 0 0 0;
+    margin: 1.5vw 0 2vw 0;
 }
 .productfull__warning {
     margin: 3vw 0 0 3%;
     font-size: 2vw;
     min-height: 35vw;
 }
+.productfull .footer {position: static;}
 
 /*@@@ SHOP-->BASKET @@@*/
 .basket {padding: 0 3% 0 3%;}
@@ -659,6 +661,7 @@ input {
         z-index: 1;
     }
     .productfull__img {
+        position: absolute;
         width: 92%;
         height: 55vw;
         clip-path: none;
