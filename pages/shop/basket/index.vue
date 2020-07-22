@@ -5,7 +5,7 @@
             <h1 class="basket__title title">Корзина</h1>
             <div class="basket__wrapper">
                 <div class="basket__products">
-                    <Product v-for="product in basket" :linkOnImg="`/shop/product/${product.id}`" :id="product.id" :title="product.title" :img="'/img/product/1.png'" :desc="product.desc" :price="product.price" :volume="product.volume"/>
+                    <Product v-for="product in basket" :linkOnImg="`/shop/product/${product.id}`" :id="product.id" :title="product.title" :img="product.img ? product.img : '/img/product/1.png'" :desc="product.desc" :price="product.price" :volume="product.volume"/>
                 </div>
                 <form class="basket__payment">
                     <h2 class="payment__title">Данные покупателя</h2>

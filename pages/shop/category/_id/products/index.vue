@@ -7,9 +7,9 @@
                 <Navigation :title="title"/>
             </h1>
             <div class="catalog__products">
-                <nuxt-link class="products__basket" to="/shop/basket">
-                    <img class="basket__img" src="/img/basket.svg"/>
-                </nuxt-link>
+<!--                <nuxt-link class="products__basket" to="/shop/basket">-->
+<!--                    <img class="basket__img" src="/img/basket.svg"/>-->
+<!--                </nuxt-link>-->
                 <div class="products__container">
                     <!--                :link="`/shop/product/${item.id}`"-->
                     <Product v-for="product in products" :linkOnImg="`/shop/product/${product.id}`" :id="product.id" :title="product.title" :price="product.price" :desc="product.pre_view" :linkToItem="`/shop/product/${product.id}/`" :img="product !== null ? product.image : '/img/product/1.png'"/>

@@ -5,9 +5,9 @@
         <section class="catalog">
             <h1 class="catalog__title title">Каталог</h1>
                 <div class="catalog__products">
-                    <nuxt-link class="products__basket" to="/shop/basket">
-                        <img class="basket__img" src="/img/basket.svg"/>
-                    </nuxt-link>
+<!--                    <nuxt-link class="products__basket" to="/shop/basket">-->
+<!--                        <img class="basket__img" src="/img/basket.svg"/>-->
+<!--                    </nuxt-link>-->
                     <div class="products__container">
                         <Product :data-id="item.id" v-for="item in menu" :id="item.id" :title="item.title" :link="`/shop/category/${item.id}`" :img="item.image !== null ? item.image : '/img/product/1.png'"/>
                      </div>

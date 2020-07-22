@@ -5,8 +5,8 @@ import Noty from "noty";
             <img class="product__img" :src="img"/>
         </nuxt-link>
         <h3 class="product__title">{{title}}</h3>
-        <p v-show="renderInfo" class="product__desc">{{desc}}</p>
-        <div v-show="renderInfo" class="product__wrapper">
+        <p v-show="renderDesc" class="product__desc">{{desc}}</p>
+        <div v-show="renderPrice" class="product__wrapper">
             <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб.</div>
 <!--            <div class="product__volume"> {{volume}} кв.м</div>-->
         </div>
@@ -35,7 +35,8 @@ export default {
         linkOnImg: String
     },
     data: () => ({
-        renderInfo: true,
+        renderDesc: true,
+        renderPrice: true,
         showCloseIcon: false,
     }),
     methods: {
@@ -57,7 +58,7 @@ export default {
         },
         addProductToBasket(e) {
             const id = +e.target.getAttribute('data-id')
-            const product = {id: this.id, title: this.title, desc: this.desc, price: this.price}
+            const product = {id: this.id, title: this.title, img: this.img, price: this.price}
 
             this.$store.commit('basket/addProduct', product)
             this.$store.commit('basket/syncBasket')
@@ -71,14 +72,16 @@ export default {
         location.pathname === '/shop/basket' ? this.showCloseIcon = true : this.showCloseIcon = false
 
         if (!/\/shop\/category\/\d+\/products\//.test(location.pathname)) {
-            this.renderInfo = false
+            this.renderDesc = false
+            this.renderPrice = false
             this.showCloseIcon = true
             setTimeout(() => this.$refs.icon.style.display = 'none', 100)
         }
 
 
         if (location.pathname === '/shop/basket') {
-            this.renderInfo = true
+            this.renderDesc = false
+            this.renderPrice = true
             setTimeout(() => this.$refs.icon.style.display = 'block', 100)
         }
 

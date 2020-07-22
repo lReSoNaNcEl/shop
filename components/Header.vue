@@ -8,6 +8,9 @@
             <nuxt-link class="navmenu__link" to="/shop">Каталог</nuxt-link>
             <nuxt-link class="navmenu__link" to="/about">О компании</nuxt-link>
             <nuxt-link class="navmenu__link" to="/providers">Поставщики</nuxt-link>
+            <nuxt-link to="/shop/basket">
+                <img class="basket__img" src="/img/basket.svg"/>
+            </nuxt-link>
         </div>
         <div class="header__toggle" @click="showNavMenu">
             <div class="toggle__item"></div>
@@ -24,6 +27,10 @@
                 <nuxt-link to="/about" class="links__item">О компании</nuxt-link>
                 <nuxt-link to="/providers" class="links__item">Поставщики</nuxt-link>
             </nav>
+
+            <nuxt-link to="/shop/basket">
+                <img class="basket__img" src="/img/basket.svg"/>
+            </nuxt-link>
 
         </div>
     </header>
@@ -43,10 +50,10 @@ export default {
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
             // || /\/shop\/product\/\d+/.test(location.pathname)
-        if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname)) {
-            for (let link of links) link.style.color = 'black'
-            this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
-        }
+        // if (location.pathname === '/shop' || location.pathname === '/shop/basket' || /\/shop\/category/.test(location.pathname)) {
+        //     for (let link of links) link.style.color = 'black'
+        //     this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
+        // }
     },
     methods: {
         showNavMenu() {this.renderMenu = !this.renderMenu}
@@ -57,23 +64,30 @@ export default {
 <style scoped>
     .header {
         position: relative;
-        padding: 1.0416vw 3%;
+        padding: 1vw 3%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #CCCCCC;
+        background-color: white;
+        z-index: 9999;
     }
 
     .header__logo {
-        width: 9.89583vw;
+        width: 8vw;
         height: 4.16vw;
+    }
+
+    .header__navmenu {
+        display: flex;
+        align-items: center;
     }
 
     .navmenu__link {
         position: relative;
         top: 0;
         margin: 0 0 0 3.125vw;
-        color: white;
+        color: black;
         font-size: .9375vw;
         font-weight: 600;
         text-transform: uppercase;
@@ -122,13 +136,14 @@ export default {
         .header__mblmenu {
             width: 80%;
             height: 100vh;
-            display: block;
+            display: flex;
+            justify-content: space-between;
             position: fixed;
             z-index: 5;
             top: 0;
             left: 0;
             background-color: white;
-            padding: 5vw 0 0 5vw;
+            padding: 5vw;
         }
 
         .navmenu__overlay {

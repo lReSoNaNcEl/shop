@@ -16,6 +16,4 @@ export const mutations = {
 
 export const getters = {
     getAbout: state => state.about
-
-
 }

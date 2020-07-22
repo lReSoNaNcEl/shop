@@ -10,7 +10,7 @@ export default {
        isRender: true
     }),
     mounted() {
-        setTimeout(() => this.isRender = false, 500)
+        setTimeout(() => this.isRender = false, 700)
     }
 }
 </script>
