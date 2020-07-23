@@ -15,10 +15,10 @@
 <!--                <p v-html="product !== null ? product.specifications : ''" class="productfull__desc"></p>-->
                 <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : '(подробнее о цене после оформления заказа)'}}</span> руб.</p>
                 <div :data-id="id" @click="addProductToBasket" class="productfull__btn btn">Купить</div>
-                <Footer/>
             </div>
             <img :src="product !== null ? product.image : '/img/product/1.png'" class="productfull__img"/>
         </section>
+        <Footer/>
 
         <div v-show="!isRender" class="productfull__warning">По Вашему запросу ничего не найдено</div>
     </div>
@@ -77,3 +77,6 @@ export default {
     components: {Header, Footer, Preloader},
 }
 </script>
+<style scoped>
+    .footer {position: relative !important;}
+</style>

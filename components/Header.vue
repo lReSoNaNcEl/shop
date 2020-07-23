@@ -63,8 +63,9 @@ export default {
 
 <style scoped>
     .header {
+        height: 10vh;
         position: relative;
-        padding: 1vw 3%;
+        padding: 0 3%;
         display: flex;
         justify-content: space-between;
         align-items: center;

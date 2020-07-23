@@ -7,20 +7,9 @@
                 <h1 class="about__title title">О компании</h1>
                 <p v-html="about.text" class="about__desc paragraph"></p>
             </div>
-<!--            <div class="about__contacts">-->
-<!--                Адрес: г.Липецк ул.Космонавтов д.1<br>-->
-<!--                Телефон: 8 (800) 888-88-88<br>-->
-<!--                Email: steel-house@example.ru-->
-<!--            </div>-->
-<!--            <div class="about__social">-->
-<!--                Вконтакте: vk.com/steel-house<br>-->
-<!--                Whats Up: 8 (800) 888-88-88<br>-->
-<!--                FaceBook: facebook.com/steel-house<br>-->
-<!--                Instagram: @steel-house-->
-<!--            </div>-->
             <img class="photo" src="/img/about.png"/>
-            <Footer/>
         </section>
+        <Footer/>
     </div>
 </template>
 

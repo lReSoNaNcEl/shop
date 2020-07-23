@@ -69,3 +69,6 @@
         components: {Header, Footer, Product, Preloader, Navigation},
     }
 </script>
+<style scoped>
+    .footer {position: relative !important;}
+</style>

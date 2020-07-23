@@ -6,7 +6,7 @@ export const actions = {
     async saveLinks(ctx) {
         const data = await fetch('https://backsteelhouse.ru/info/')
         const links = await data.json()
-        ctx.commit('setLinks', await links)
+        ctx.commit('setLinks', await links.info)
     }
 }
 

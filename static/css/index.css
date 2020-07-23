@@ -240,6 +240,7 @@ input {
     position: relative;
     padding: 0 0 0 3%;
     z-index: 0;
+    margin: 0 0 2vw 0;
 }
 .production__title {
     font-size: 1.4583vw;
@@ -351,6 +352,7 @@ input {
     display: flex;
     flex-direction: column;
     padding: 0 3% 0 3%;
+    min-height: 84vh;
 }
 .catalog__title {
     display: flex;
@@ -366,7 +368,6 @@ input {
 }
 .catalog__navigation {color: darkgray;}
 .navigation__separator {margin: 0 .7vw;}
-.catalog__products {min-height: 40vw;}
 .products__basket {
     display: flex;
     justify-content: flex-end;
@@ -467,7 +468,7 @@ input {
     clip-path: polygon(0 62%, 24% 0, 100% 0, 100% 100%, 0 100%, 0 75%, 0 72%, 0 68%, 0 65%);
 }
 .productfull__desc {
-    font-size: .9375vw;
+    font-size: 1vw;
     margin: 0 0 2.083vw 0;
     line-height: 180%;
 }

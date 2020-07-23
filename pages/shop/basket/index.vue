@@ -155,4 +155,6 @@
         components: {Header, Footer, Product, VueMask}
     }
 </script>
-ву
+<style scoped>
+    .footer {position: static !important;}
+</style>

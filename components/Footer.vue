@@ -1,20 +1,22 @@
 <template>
     <footer class="footer">
         <div class="footer__wrapper">
-            <p class="footer__phone">8 (800) 888-88-88</p>
+            <p class="footer__phone">{{links.phone}}</p>
             <div class="footer__barrier"></div>
-            <p class="footer__address">г.Липецк ул.Космонавтов д.1</p>
+            <p class="footer__address">{{links.address}}</p>
+            <div class="footer__barrier"></div>
+            <p class="footer__address">{{links.email}}</p>
         </div>
         <div class="footer__social">
-            <a class="social__link" href="#" target="_blank">
+            <a class="social__link" :href="links.vk" target="_blank">
                 <img class="social__icon" src="/img/social/vk.svg"/>
             </a>
-            <a class="social__link" href="#" target="_blank">
+            <a class="social__link" :href="links.instagram" target="_blank">
                 <img class="social__icon" src="/img/social/instagram.svg"/>
             </a>
-            <a class="social__link" href="#" target="_blank">
-                <img class="social__icon" src="/img/social/whatsapp.svg"/>
-            </a>
+<!--            <a class="social__link" href="#" target="_blank">-->
+<!--                <img class="social__icon" src="/img/social/whatsapp.svg"/>-->
+<!--            </a>-->
         </div>
     </footer>
 </template>
@@ -25,24 +27,29 @@
             links: []
         }),
         created() {
-            // this.$store.dispatch('social/saveLinks').then(() => {
-            //     this.links = this.$store.getters['social/getLinks']
-            //     console.log(this.links)
-            // })
+            this.$store.dispatch('social/saveLinks').then(() => {
+                this.links = this.$store.getters['social/getLinks']
+                console.log(this.links)
+            })
         }
     }
 </script>
 
 <style scoped>
     .footer {
-        position: relative;
-        height: 1.875vw;
+        width: 100%;
+        height: 6vh;
+        bottom: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: absolute;
+        z-index: 10;
         font-size: 1.0416vw;
-        padding: 0 0 0 3%;
-        z-index: 2;
+        background-color: white;
+        padding: 0 3%;
+        margin: 0;
+        box-sizing: border-box;
     }
     .footer__barrier {
         width: 1.875vw;
@@ -54,12 +61,10 @@
         display: flex;
         align-items: center;
     }
-    .footer__social {
-        display: none;
-    }
     .social__icon {
-        width: 2vw;
-        height: 2vw;
+        width: 1.5vw;
+        height: 1.5vw;
+        margin: 0 .6vw 0 0;
     }
     @media only screen and (max-width: 1024px) {
         .footer {
@@ -67,9 +72,22 @@
             font-size: 1.5625vw;
             margin: 13.4375vw 0 2.34375vw 0;
         }
+        .social__icon {
+            width: 3vw;
+            height: 3vw;
+        }
     }
     @media only screen and (max-width: 480px) {
         .footer {font-size: 3.6vw;}
+        .footer__barrier {display: none;}
+        .footer__wrapper {
+            flex-flow: column nowrap;
+            align-items: flex-start;
+        }
+        .social__icon {
+            width: 6vw;
+            height: 6vw;
+        }
     }
 </style>
 
