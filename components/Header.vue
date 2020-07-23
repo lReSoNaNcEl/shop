@@ -8,8 +8,8 @@
             <nuxt-link class="navmenu__link" to="/shop">Каталог</nuxt-link>
             <nuxt-link class="navmenu__link" to="/about">О компании</nuxt-link>
             <nuxt-link class="navmenu__link" to="/providers">Поставщики</nuxt-link>
-            <nuxt-link to="/shop/basket">
-                <img class="basket__img" src="/img/basket.svg"/>
+            <nuxt-link class="navmenu__basket" to="/shop/basket">
+                <img class="basket__img" src="/img/basket.svg"/> {{`(${amountProducts})`}}
             </nuxt-link>
         </div>
         <div class="header__toggle" @click="showNavMenu">
@@ -41,11 +41,14 @@ export default {
     watch: {
         '$route.path': function () {
             setTimeout(() => this.renderMenu = false, 100)
-        }
+        },
     },
     data: () => ({
-        renderMenu: false
+        renderMenu: false,
     }),
+    created() {
+        this.$store.commit('basket/syncBasket')
+    },
     mounted() {
         let links = Array.from(document.getElementsByClassName('navmenu__link'))
 
@@ -55,8 +58,11 @@ export default {
         //     this.$refs.header.style.borderBottom = '1px solid #CCCCCC'
         // }
     },
+    computed: {
+        amountProducts() {return this.$store.getters['basket/getAmountProducts']}
+    },
     methods: {
-        showNavMenu() {this.renderMenu = !this.renderMenu}
+        showNavMenu() {this.renderMenu = !this.renderMenu},
     }
 }
 </script>
@@ -95,6 +101,14 @@ export default {
         z-index: 10;
     }
 
+    .navmenu__basket {
+        display: flex;
+        align-items: center;
+        font-size: 1.2vw;
+        font-weight: bold;
+        color: #627E91;
+    }
+
     .header__mblmenu {
         display: none;
     }
@@ -112,6 +126,10 @@ export default {
         .header__logo {
             width: 14.648vw;
             height: 6.3476vw;
+        }
+
+        .navmenu__basket {
+            font-size: 2.5vw;
         }
 
         .navmenu__link {

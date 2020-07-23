@@ -3,24 +3,23 @@
         <Preloader/>
         <Header/>
         <section v-show="isRender" class="productfull">
+            <img :src="product !== null ? product.image : '/img/product/1.png'" class="productfull__img"/>
             <div class="productfull__wrapper">
                 <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
                 <div class="productfull__specifications">
-                    <div @click="menuSpecifications" data-type="information" class="specifications__item specifications__item_active">Описание</div>
-                    <div @click="menuSpecifications" data-type="specification" class="specifications__item">Характеристики</div>
-                    <div @click="menuSpecifications" data-type="objects" class="specifications__item">Готовые объекты</div>
-                    <div @click="menuSpecifications" data-type="advice" class="specifications__item">Советы</div>
+                    <div v-show="product.desc !== null" @click="menuSpecifications" data-type="information" class="specifications__item specifications__item_active">Описание</div>
+                    <div v-show="product.specifications !== null" @click="menuSpecifications" data-type="specification" class="specifications__item">Характеристики</div>
+                    <div v-show="product.finished_objects !== null" @click="menuSpecifications" data-type="objects" class="specifications__item">Готовые объекты</div>
+                    <div v-show="product.installation_tips !== null" @click="menuSpecifications" data-type="advice" class="specifications__item">Советы по монтажу</div>
                 </div>
                 <p v-html="html" class="productfull__desc"></p>
 <!--                <p v-html="product !== null ? product.specifications : ''" class="productfull__desc"></p>-->
                 <p class="productfull__price">Цена: <span class="highlight">{{product !== null ? product.price : '(подробнее о цене после оформления заказа)'}}</span> руб.</p>
                 <div :data-id="id" @click="addProductToBasket" class="productfull__btn btn">Купить</div>
             </div>
-            <img :src="product !== null ? product.image : '/img/product/1.png'" class="productfull__img"/>
         </section>
-        <Footer/>
-
         <div v-show="!isRender" class="productfull__warning">По Вашему запросу ничего не найдено</div>
+        <Footer/>
     </div>
 </template>
 
@@ -35,7 +34,7 @@ export default {
     data: () => ({
         isRender: true,
         id: null,
-        product: null,
+        product: {},
         html: null,
 
     }),
@@ -79,4 +78,5 @@ export default {
 </script>
 <style scoped>
     .footer {position: relative !important;}
+    .title {margin: 2vw 0 0 0 !important;}
 </style>

@@ -1,8 +1,8 @@
 export const state = () => ({
     basket: [],
     totalPrice: null,
-    mailResponse: null
-
+    mailResponse: null,
+    amountProducts: 0
 })
 
 export const actions = {
@@ -38,6 +38,7 @@ export const mutations = {
             state.totalPrice = state.basket
                 .map(product => product.price)
                 .reduce((acc, price) => acc + price)
+        state.amountProducts = state.basket.length
     },
     setMailResponse: (state, payload) => state.mailResponse = payload
 }
@@ -45,5 +46,7 @@ export const mutations = {
 export const getters = {
     getBasket: state => state.basket,
     getTotalPrice: state => state.totalPrice,
-    getMailResponse: state => state.mailResponse
+    getMailResponse: state => state.mailResponse,
+    getAmountProducts: state => state.amountProducts
 }
+
