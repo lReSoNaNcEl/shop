@@ -77,6 +77,6 @@ export default {
 }
 </script>
 <style scoped>
-    .footer {position: relative !important;}
+    .footer {position: relative;}
     .title {margin: 2vw 0 0 0 !important;}
 </style>

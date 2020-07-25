@@ -476,7 +476,9 @@ input {
     font-size: 2vw;
     min-height: 35vw;
 }
-/*.productfull .footer {position: static;}*/
+.productfull__wrapper {
+    min-height: 82vh;
+}
 
 /*@@@ SHOP-->BASKET @@@*/
 .basket {padding: 0 3% 0 3%;}
