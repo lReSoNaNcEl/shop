@@ -140,6 +140,7 @@ export default {
 
     @media only screen and (max-width: 480px) {
         .header {
+            height: initial;
             padding: 6vw 3%;
         }
 

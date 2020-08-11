@@ -8,7 +8,6 @@ import Noty from "noty";
         <p v-show="renderDesc" class="product__desc">{{desc}}</p>
         <div v-show="renderPrice" class="product__wrapper">
             <div class="product__price">Цена: <span class="highlight">{{price}}</span> руб.</div>
-<!--            <div class="product__volume"> {{volume}} кв.м</div>-->
         </div>
         <div v-show="!showCloseIcon" class="product__controls">
             <div :data-id="id" @click="addProductToBasket" class="product__btn btn">Купить</div>
@@ -75,14 +74,14 @@ export default {
             this.renderDesc = false
             this.renderPrice = false
             this.showCloseIcon = true
-            setTimeout(() => this.$refs.icon.style.display = 'none', 100)
+            setTimeout(() => this.$refs.icon.style.display = 'none', 10)
         }
 
 
         if (location.pathname === '/shop/basket') {
             this.renderDesc = false
             this.renderPrice = true
-            setTimeout(() => this.$refs.icon.style.display = 'block', 100)
+            setTimeout(() => this.$refs.icon.style.display = 'block', 10)
         }
 
     }
