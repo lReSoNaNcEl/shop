@@ -1,11 +1,11 @@
 <template>
     <footer class="footer">
         <div class="footer__wrapper">
-            <p class="footer__phone">{{links.phone}}</p>
-            <div class="footer__barrier"></div>
-            <p class="footer__address">{{links.address}}</p>
-            <div class="footer__barrier"></div>
-            <p class="footer__address">{{links.email}}</p>
+            <p v-if="links.phone" class="footer__phone">{{links.phone}}</p>
+            <div v-if="links.phone" class="footer__barrier"></div>
+            <p v-if="links.address" class="footer__address">{{links.address}}</p>
+            <div v-if="links.address" class="footer__barrier"></div>
+            <p v-if="links.email" class="footer__address">{{links.email}}</p>
         </div>
         <div class="footer__social">
             <a class="social__link" :href="links.vk" target="_blank">
@@ -14,9 +14,6 @@
             <a class="social__link" :href="links.instagram" target="_blank">
                 <img class="social__icon" src="/img/social/instagram.svg"/>
             </a>
-<!--            <a class="social__link" href="#" target="_blank">-->
-<!--                <img class="social__icon" src="/img/social/whatsapp.svg"/>-->
-<!--            </a>-->
         </div>
     </footer>
 </template>
@@ -27,10 +24,7 @@
             links: []
         }),
         created() {
-            this.$store.dispatch('social/saveLinks').then(() => {
-                this.links = this.$store.getters['social/getLinks']
-                console.log(this.links)
-            })
+            this.$store.dispatch('social/saveLinks').then(() => this.links = this.$store.getters['social/getLinks'])
         }
     }
 </script>

@@ -427,7 +427,23 @@ input {
     width: 52%;
     padding: 0 0 0 3%;
 }
-
+.productfull__colors {margin: 2.08vw 0 0 0;}
+.colors__title {
+    font-size: 1.45833vw;
+    font-weight: bold;
+    margin: 0 0 1.0416rem 0;
+}
+.colors__container {
+    display: flex;
+    align-items: center;
+}
+.colors__img {
+    width: 1.875vw;
+    height: 1.875vw;
+    border-radius: 100%;
+    margin: 0 1.458vw 0 0;
+    cursor: pointer;
+}
 .productfull__specifications {
     width: max-content;
     display: flex;
@@ -494,9 +510,10 @@ input {
     margin: 2.083vw 0 0 0;
 }
 .basket__products .product {
-    width: 32%;
+    width: 31%;
     margin: 0 2% 2.083vw 0;
 }
+.basket__products .product:nth-of-type(3n + 3) {margin-right: 0;}
 .basket__payment {
     width: 35%;
     height: max-content;
@@ -649,6 +666,18 @@ input {
         position: relative;
         z-index: 1;
     }
+    .productfull__colors {margin: 3vw 0 3vw 0;}
+    .colors__title {
+        font-size: 3.2vw;
+        font-weight: bold;
+        margin: 0 0 1.0416rem 0;
+    }
+    .colors__container {flex-wrap: wrap;}
+    .colors__img {
+        width: 6vw;
+        height: 6vw;
+        margin: 0 3vw 0 0;
+    }
     .productfull__specifications {
         justify-content: initial;
         padding: 0 0 1vw 0;
@@ -719,6 +748,15 @@ input {
         margin: 0 0 0 3vw;
     }
     .product__img {height: 60vw;}
+    .colors__title {
+        font-size: 4.6vw;
+        margin: 0 0 3vw 0;
+    }
+    .colors__img {
+        width: 12vw;
+        height: 12vw;
+        margin: 0 5vw 0 0;
+    }
     .productfull__desc {font-size: 4.2vw;}
     .productfull__price {font-size: 4.6vw;}
     .productfull__btn {

@@ -4,7 +4,7 @@
         <Header/>
         <section class="about wrapper">
             <div class="about__wrapper">
-                <h1 class="about__title title">О компании</h1>
+                <h1 class="about__title title">{{about.title}}</h1>
                 <p v-html="about.text" class="about__desc paragraph"></p>
             </div>
             <img class="photo" src="/img/about.png"/>

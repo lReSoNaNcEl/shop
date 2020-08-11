@@ -7,7 +7,7 @@
             <nuxt-link class="navmenu__link" to="/">Главная</nuxt-link>
             <nuxt-link class="navmenu__link" to="/shop">Каталог</nuxt-link>
             <nuxt-link class="navmenu__link" to="/about">О компании</nuxt-link>
-            <nuxt-link class="navmenu__link" to="/providers">Поставщики</nuxt-link>
+            <nuxt-link class="navmenu__link" to="/providers">Помощь при монтаже</nuxt-link>
             <nuxt-link class="navmenu__basket" to="/shop/basket">
                 <img class="basket__img" src="/img/basket.svg"/> {{`(${amountProducts})`}}
             </nuxt-link>
