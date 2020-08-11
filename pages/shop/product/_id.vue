@@ -6,11 +6,11 @@
             <img :src="previewImage ? previewImage : '/img/product/1.png'" class="productfull__img"/>
             <div class="productfull__wrapper">
                 <h1 class="productfull__title title">{{product !== null ? product.title : ''}}</h1>
-                <div class="productfull__colors">
+                <div v-show="colors.length" class="productfull__colors">
                     <div class="colors__title">Цвета:</div>
                     <div class="colors__container">
                         <img :src="product.image" @click="changeImage(product.image)" class="colors__img"/>
-                        <img v-for="color of colors" @click="changeImage(color)" :src="color" class="colors__img"/>
+                        <img v-if="colors" v-for="color of colors" @click="changeImage(color)" :src="color" class="colors__img"/>
                     </div>
                 </div>
                 <div class="productfull__specifications">
@@ -43,12 +43,7 @@ export default {
         product: {},
         html: null,
         previewImage: null,
-        colors: [
-            '/img/product/1.png',
-            '/img/product/2.png',
-            '/img/product/3.png',
-            '/img/product/4.png',
-        ]
+        colors: []
     }),
     methods: {
         changeImage(color) {
@@ -86,6 +81,8 @@ export default {
             this.product === null ? this.isRender = false : null
             this.html = this.product.desc
             this.previewImage = this.product.image
+            this.colors = this.product.colors.map(color => color.image)
+            console.log(this.product)
         })
     },
     components: {Header, Footer, Preloader},
