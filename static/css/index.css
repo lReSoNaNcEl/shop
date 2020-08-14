@@ -438,11 +438,19 @@ input {
     align-items: center;
 }
 .colors__img {
-    width: 1.875vw;
-    height: 1.875vw;
+    width: 2.4vw;
+    height: 2.4vw;
     border-radius: 100%;
     margin: 0 1.458vw 0 0;
     cursor: pointer;
+}
+.colors__img:hover {
+    transform: scale(1.2);
+    transition: all .5s;
+}
+.colors__img_active {
+    transform: scale(1.2);
+    border: .15vw solid #617D91;
 }
 .productfull__specifications {
     width: 100%;
@@ -468,6 +476,10 @@ input {
     padding: .8vw 0;
     cursor: pointer;
     margin: 0 2vw 0 0;
+}
+.specifications__item:hover {
+    transition: all .5s;
+    color: #627E91;
 }
 .specifications__item_active {color: #627E91;}
 .productfull__products {

@@ -9,16 +9,16 @@
                 <div v-show="colors.length" class="productfull__colors">
                     <div class="colors__title">Цвета:</div>
                     <div class="colors__container">
-                        <img :src="product.image" @click="changeImage(product.image)" class="colors__img"/>
-                        <img v-if="colors" v-for="color of colors" @click="changeImage(color)" :src="color" class="colors__img"/>
+                        <img :src="product.image" @click="changeImage($event, product.image)" class="colors__img colors__img_active"/>
+                        <img v-if="colors" v-for="color of colors" @click="changeImage($event, color)" :src="color" class="colors__img"/>
                     </div>
                 </div>
-                <div class="productfull__specifications">
+                <div class="productfull__specifications" v-dragscroll.x="true">
                     <div v-if="product.desc" @click="menuSpecifications" data-type="information" class="specifications__item specifications__item_active">Описание</div>
                     <div v-if="product.specifications" @click="menuSpecifications" data-type="specification" class="specifications__item">Характеристики</div>
+                    <div v-if="product.related_products && product.related_products.length !== 0" @click="menuSpecifications" data-type="attendant" class="specifications__item">Сопутствующие товары</div>
                     <div v-if="product.finished_objects" @click="menuSpecifications" data-type="objects" class="specifications__item">Готовые объекты</div>
                     <div v-if="product.installation_tips" @click="menuSpecifications" data-type="advice" class="specifications__item">Советы по монтажу</div>
-                    <div v-if="product.related_products && product.related_products.length !== 0" @click="menuSpecifications" data-type="attendant" class="specifications__item">Сопутствующие товары</div>
                 </div>
                 <p v-html="html" class="productfull__desc"></p>
                 <div v-if="related_products" class="productfull__products">
@@ -52,7 +52,14 @@ export default {
         related_products: null
     }),
     methods: {
-        changeImage(color) {
+        changeImage(e, color) {
+            const images = document.getElementsByClassName('colors__img')
+
+            for (let i = 0; i <= images.length - 1; i++) {
+                images[i].classList.remove('colors__img_active')
+            }
+
+            e.currentTarget.classList.add('colors__img_active')
             this.previewImage = color
         },
         alert(text, type, time = 1500) {
