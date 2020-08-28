@@ -41,6 +41,7 @@ import Product from "@/components/Product"
 import Noty from 'noty'
 import 'noty/lib/noty.css'
 import 'noty/lib/themes/metroui.css'
+import {dragscroll} from 'vue-dragscroll'
 export default {
     data: () => ({
         isRender: true,
@@ -51,6 +52,7 @@ export default {
         colors: [],
         related_products: null
     }),
+    directives: {dragscroll},
     methods: {
         changeImage(e, color) {
             const images = document.getElementsByClassName('colors__img')

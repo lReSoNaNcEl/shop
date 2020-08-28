@@ -443,13 +443,12 @@ input {
     border-radius: 100%;
     margin: 0 1.458vw 0 0;
     cursor: pointer;
-}
-.colors__img:hover {
-    transform: scale(1.2);
     transition: all .5s;
 }
+.colors__img:hover {
+    transform: scale(1.1);
+}
 .colors__img_active {
-    transform: scale(1.2);
     border: .15vw solid #617D91;
 }
 .productfull__specifications {
